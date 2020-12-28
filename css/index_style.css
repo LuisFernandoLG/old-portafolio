@@ -24,7 +24,10 @@ body{
 }
 
 
-
+.header__tittle{
+    font-size: 1.875rem;
+    text-align: center;
+}
 img{
     width: 40px;
     height: 40px;
@@ -124,3 +127,18 @@ img{
 .card:active{
     background: var(--activate-color);
 }
+
+
+
+@media screen and (max-width:430px){
+    html{
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width:340px){
+    html{
+        font-size: 9px;
+    }
+}
+
