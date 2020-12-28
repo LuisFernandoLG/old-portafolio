@@ -1,0 +1,162 @@
+:root{
+    --primary-color:#272727;
+    --bacground:#E8E8E8;
+    --container-color:#FFFFFF;
+}
+
+body{
+    font-family: 'Lato', sans-serif;
+    background: var(--bacground);
+
+}
+
+.weight-300{
+    font-weight: 300;
+}
+.weight-700{
+    font-weight: 700;
+}
+.weight-900{
+    font-weight: 900;
+}
+
+
+
+.container{
+    width: 90%;
+    height: 120vh;
+
+    margin: 20px auto;
+
+    background: var(--container-color);
+
+
+    display: flex;
+    flex-wrap: wrap;
+
+
+}
+
+.tittle-container{
+    flex-grow: 1;
+
+
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.tittle-container__tittle{
+    font-size: 70px;
+    color: var(--primary-color);
+
+}
+
+
+
+.dates{
+    flex-grow: 2;
+
+    margin: 15px;
+
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    grid-template-rows: repeat(auto-fill, 200px);
+
+    gap: 10px;
+}
+
+
+.date{
+
+    padding: 10px;
+
+    /* FLEX */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--bacground);
+
+    /*medidad*/
+    
+
+    /*pointer*/
+    cursor: pointer;
+}
+
+/* animations */
+.date:hover{
+    animation: up .2s forwards;
+}
+
+.date:active{
+    animation: click .3s forwards;
+}
+
+
+.date__number{
+    font-size: 60px;
+
+    text-shadow: 2px 2px 5px var(--primary-color);
+    
+}
+.date__tittle{
+    font-size: 19px;
+
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.date__description{
+    font-size: 15px;
+
+    text-align: center;
+}
+
+
+
+/* ANIMATIONS */
+
+@keyframes up{
+
+    0%{
+        transform: scale(.99);
+    }
+
+    100%{
+        transform: scale(1.3);
+        transform: rotate(-5deg);
+        box-shadow: 2px 2px 10px violet;
+
+
+    }
+
+}
+
+@keyframes click{
+
+    0%{
+        transform: scale(1.3);
+        transform: rotate(-5deg);
+    }
+
+    100%{
+        transform: scale(1.2);
+        box-shadow: 2px 2px 10px violet;
+    }
+
+}
+
+
+
+/*  Media queries */
+
+@media screen and (max-width:930px){
+    
+
+}

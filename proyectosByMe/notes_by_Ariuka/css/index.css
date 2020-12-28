@@ -1,0 +1,283 @@
+:root{
+    --background:#fff;
+    --tittle:#202020;
+    --orange-note:#fe9b72;
+    --purple:#b693fd;
+    --green:#e4ef8f;
+
+    --lupa:rgba(160, 157, 157, 0.315);
+
+}
+
+body{
+    font-family: 'quicksand';
+}
+
+.weight-300{
+    font-weight: 300;
+}
+
+.weight-800{
+    font-weight: 800;
+}
+
+.weight-600{
+    font-weight: 600;
+}
+
+.container{
+    width: auto;
+    height: 100%;
+
+    margin: 30px 10px;
+    margin-bottom: 0;
+
+    background: var(--background);
+
+    display: grid;
+
+    grid-template-areas: 
+    "nav-tools search search search"
+    "nav-tools notes notes notes"
+    "nav-tools notes notes notes"
+    "nav-tools notes notes notes"
+    "footer footer footer footer"
+    ;
+
+    grid-template-rows: 4.375rem 1fr 1fr 1fr 60px;
+
+    column-gap: 20px;
+    
+
+}
+
+/* HEADERR ---------------------------------------- */
+.search{
+
+    grid-area: search;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.search__icon{
+    font-size:2.1875rem;
+    color: var(--lupa);
+    margin: 0 10px;
+}
+
+.search__input{
+    flex-grow: 1;
+    height: 70%;
+    background: var(--lupa);
+
+    padding-left: 20px;
+
+    border-radius: 30px;
+
+    /* quitar estilos */
+    border: none;
+    outline: none;
+}
+
+.search__input::placeholder{
+    font-size: 1.25rem;
+}
+
+/* aside nav-tools ------------------------ */
+
+.nav-tools{
+    grid-area: nav-tools;
+
+    padding: 20px;
+
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+    border-right: 2px solid var(--lupa);
+    
+    
+
+    width: 100%;
+    max-width: 241px;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.nav-tools__tittle{
+    font-size: 20px;
+    text-align: center;
+
+    text-decoration: none;
+    color: #202020;
+
+    margin-bottom: 20px;
+}
+
+.nav-tools__add-icon:hover{
+    animation: up .6s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+}
+
+.nav-tools__add-icon{
+    font-size: 70px;
+    margin: 10px 0;
+
+}
+
+.nav-tools__add-icon:active{
+    animation: click .3s backwards;
+}
+
+
+
+/* MAIN ------------------------------------------ */
+.notes{
+
+    grid-area: notes;
+
+    width: 100%;
+    height: auto;
+    margin: 20px 0;
+
+    display: grid;
+
+    grid-template-columns:  repeat( auto-fit, minmax(250px, 1fr) );
+    grid-template-rows: 100px repeat(auto-fit, 1fr);
+
+    row-gap: 20px;
+    column-gap: 20px;
+
+}
+
+.notes__tittle{
+    font-size: 3.75rem;
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+}
+
+
+/* each note --------------------------------------------------- */
+/* To fix overflow by text */
+.card{
+    border-radius: 20px;
+    padding: 20px;
+    background-color: var(--orange-note);
+
+     
+    
+}
+
+.note{
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.card-animation:hover{
+    animation: up .6s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+
+}
+
+.card:nth-child(even){
+    background-color: var(--purple);
+}
+
+.card:nth-child(4n){
+    background-color: var(--green);
+}
+
+.note__tittle{
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.note__quote{
+    text-align: left;
+
+}
+
+
+/* FOOTER */
+
+.footer{
+    grid-area: footer;
+    height: 100%;
+    background-color: #202020;
+    color: #fff;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+/* Animations --------------------- */
+
+@keyframes up{
+
+    0%{
+        transform: scale(1);
+    }
+
+    100%{
+        transform: scale(1.1);
+
+    }
+
+}
+
+@keyframes click{
+    0%{
+        transform: scale(.9);
+    }
+
+    100%{
+        
+        transform: scale(1.1);
+    }
+}
+
+
+
+/* theme dark */ 
+
+@media (prefers-color-scheme: dark){
+    body, .container{
+        background-color: #202020;
+    }
+
+    .nav-tools__tittle ,.nav-tools__add-icon, .notes__tittle, .search__icon, .search__input::placeholder, .search__input{
+        color: #fff;
+    }
+
+}
+
+
+@media screen and (max-width:700px){
+
+    html{
+        font-size: 12px;
+    }
+
+    .nav-tools{
+        display: none;
+    }
+
+    .container{
+     
+    grid-template-areas: 
+    "search search search"
+    "notes notes notes"
+    "notes notes notes"
+    "notes notes notes"
+    "footer footer footer"
+    
+    ;
+    }
+
+}

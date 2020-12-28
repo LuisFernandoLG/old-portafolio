@@ -80,6 +80,7 @@ img{
     display: grid;
     grid-template-columns:  repeat( 2, 1fr);
     grid-template-rows: repeat(auto-fill, 150px);
+
 }
 
 .card{
@@ -87,6 +88,9 @@ img{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    text-decoration: none;
+
 
     
 }
