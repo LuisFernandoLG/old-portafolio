@@ -2,6 +2,7 @@
 
 const dates = document.getElementById("dates");
 let fragment = document.createDocumentFragment();
+console.log(dates.hasChildNodes());
 
 
 class Date{
@@ -78,6 +79,9 @@ let mainTittle = document.getElementById("mainTittle");
 
 function changeText(tittle){
     mainTittle.innerHTML = tittle;
+    mainTittle.style.animation = "highlightNode .9s ease";
+
+    
 }
 
 for ( let i = 0; i<7; i++){
@@ -117,8 +121,17 @@ for ( let i = 0; i<7; i++){
 
     
 }
-
-
 dates.appendChild(fragment);
+
+console.log(dates.hasChildNodes());
+
+if ( dates.hasChildNodes() === false ){
+    const text = document.createElement("H2");
+    text.innerHTML = "NO HAY FECHAS";
+    fragment.appendChild(text);
+    dates.appendChild(fragment);
+
+}
+
 
 

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista simple</title>
+
+    <!-- Fonts -->
+    <link rel="https://cdn.rawgit.com/mfd/f3d96ec7f0e8f034cc22ea73b3797b59/raw/856f1dbb8d807aabceb80b6d4f94b464df461b3e/gotham.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/style_main.css">
+    <link rel="stylesheet" href="../css/animations.css">
+
+    <!-- ICONS -->
+    <script src="https://kit.fontawesome.com/e2bb560564.js" crossorigin="anonymous"></script>
+
+    
+
+</head>
+<body>
+
+    <div class="container">
+
+        <header class="header">
+            <h1 class="header__tittle weight-800">Lista <span class="header__tittle-bold">simplemente</span> enlazada</h1>
+        </header>
+
+        <main class="main">
+            <div class="list" id="list">
+ 
+                
+                <div id="nodes" class="nodes">
+                    <div class="nodes__node">1</div>
+                </div> 
+                
+                <div class="nodes__null"></div>
+            
+
+            </div>
+
+            <div class="message">
+                
+            </div>
+
+            <div class="options">
+                <div class="option">
+                    <div class="option-header">
+                        <img src="../img/buttonDelete.svg" alt="delete" class="option-header__icon">
+                        <select name="comboBox" id="delete-comboBox" class="comboBox">
+                            <option value="Frente" class="comboBox__option weight-400">Frente</option>
+                            <option value="Final" class="comboBox__option weight-400">Final</option>
+                            
+                        </select>
+                    </div>
+                    <div class="option-body">
+                        <div id="delete-button" class="option-body__button weight-500">Eliminar</div>
+                    </div>
+                </div>
+                <div class="option">
+                    <div class="option-header">
+                            <img src="../img/buttonAdd.svg" alt="add" class="option-header__icon">
+                            <select name="comboBox" id="add-comboBox" class="comboBox">
+                                <option value="Frente" class="comboBox__option">Frente</option>
+                                <option value="Final" class="comboBox__option">Final</option>
+                                
+                            </select>
+                    </div>
+                    <div class="option-body">
+                        <input id="add-input" type="number" class="option-body__input">
+                        
+                        <div id="add-button" class="option-body__button weight-500">Añadir</div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </main>
+
+
+
+        <footer class="footer">
+            <p class="credits weight-400">Created by: <a class="credits__name weight-500">Luis López</a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="../js/main.js"></script>
+    
+</body>
+</html>
