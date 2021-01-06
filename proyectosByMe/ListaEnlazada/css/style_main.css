@@ -3,12 +3,25 @@
     --primary-color:#222831;
     --secunday-color:#eeeeee;
 
+    --colorOne:lightblue;
+
+    --disable-btn-color:rgb(199, 194, 194);
+
     --gray:#ebe6e655;
 
     --beautiful-yellow:#ffd369;
     --light-dark:#393e46;
 
     --error-color:#D0312D;
+
+
+    --width-arrow:130px;
+    --height-arrow:130px;
+
+    --widht-node:50px;
+    --height-node:50px;
+
+    
 }
 
 body{
@@ -106,7 +119,7 @@ img{
     
 }
 
-
+/*Nodes ------------------------------------------------------------------------------------------*/
 
 .nodes{
 
@@ -117,13 +130,14 @@ img{
     display: flex;
 
 
-    padding: 10px;
+    padding: 20px;
 
 }
 
 .nodes__node{
-    padding: 20px 60px;
+    padding: 10px;
     min-width: 150px;
+
 
     border: 2px solid var(--primary-color);
     font-size: 40px;
@@ -132,6 +146,16 @@ img{
 
 }
 
+.nodes__arrow{
+    width: var(--width-arrow);
+    height: var(--height-arrow);
+
+    padding: 10px;
+
+    animation: shakeArrow 1s alternate ease-out;
+    
+
+}
 
 /* Options -----------------*/
 .options{
@@ -223,6 +247,14 @@ img{
 }
 
 
+.option__btn-animation{
+    background-color: var(--primary-color);
+    color: var(--secunday-color);
+
+    padding: 10px;
+    border-radius: 12px;
+}
+
 /* Footer ------------------------------------------------*/
 .footer{
 
@@ -251,7 +283,7 @@ img{
     font-size: 17px;
 
     color: var(--error-color);
-
+    
     
 }
 
@@ -263,17 +295,7 @@ img{
 
 
 
-/* ANIMATIONS */
-
-/* Buttons */
-
-
-
-
-
-
-
-
+/* ANIMATIONS ------------------------------------------------------------------------*/
 
 
 
@@ -290,7 +312,20 @@ img{
 @keyframes addNode{
 
     0%{
-        transform: translateY(-100px);
+        transform: translateY(-200px);
+    }
+
+
+    100%{
+        
+        transform: scale(1);
+    }
+}
+
+@keyframes addArrow{
+
+    0%{
+        transform: scale(0);
     }
 
 
@@ -313,15 +348,89 @@ img{
     }
 }
 
-@keyframes moveToLeftNodes{
+@keyframes moveToRightNodes{
     0%{
+        
+    }
+    50%{
         transform: translateX(110px);
     }
     100%{
 
     }
 }
+@keyframes moveToLeftNodes{
+    0%{
+        
+    }
+    50%{
+        transform: translateX(-110px);
+    }
+    100%{
 
+    }
+}
+
+
+@keyframes backNodeAnimation {
+    0%{
+
+    }
+
+    100%{
+        background-color: var(--colorOne);
+        color: var(--primary-color);
+    }
+}
+
+@keyframes frontNodeAnimation {
+    0%{
+
+    }
+
+    100%{
+        background-color: var(--primary-color);
+        color: var(--secunday-color);
+    }
+}
+
+.disabled-btn{
+    background: var(--disable-btn-color);
+}
+
+@keyframes shakeArrow{
+    0%{
+
+    }
+
+    30%{
+        transform: rotate(10deg);
+    }
+
+    60%{
+        
+        transform: rotate(-10deg);
+
+    }
+
+    100%{
+
+    }
+}
+
+@keyframes illuminateAllNode{
+    0%{
+
+    }
+    50%{
+        background: var(--beautiful-yellow);
+    }
+    100%{
+
+    }
+
+
+}
 
 
 /**
@@ -345,7 +454,7 @@ LETRETOS
 
 
 .nodes__node:nth-child(1)::before {
-    content: "Frente";
+    content: "Final";
 
     background-color: var(--primary-color);
     color: #eeeeee;
@@ -354,15 +463,15 @@ LETRETOS
     padding: 10px;
     border-radius: 12px;
     font-weight: 600;
+
+    animation: backNodeAnimation 3s infinite alternate ease;
     
 }
 
-.nodes__node:last-child{
-    font-weight: 600;
-}
 
-.nodes__node:last-child::after{
-    content: "Final";
+/* Seleccionar ultimo */
+.nodes__node:last-of-type::after{
+    content: "Frente";
 
     background-color: var(--beautiful-yellow);
     color: var(--primary-color);
@@ -371,5 +480,16 @@ LETRETOS
     padding: 10px;
     border-radius: 12px;
     font-weight: 600;
-    
+
+    animation: frontNodeAnimation 3s infinite alternate ease;
+ 
 }
+
+
+
+
+/*  **/
+.hidden{
+    visibility: hidden;
+}
+

@@ -4,9 +4,16 @@
  */
 const addButton = document.getElementById("add-button");
 const deleteButton = document.getElementById("delete-button");
+const illuminationButton = document.querySelector(".option__btn-animation");
 
 let contentMessage = document.querySelector(".message");
 let contentNullPtr = document.querySelector(".nodes__null");
+
+/**
+ * COMBO-BOC
+ */
+
+
 
 /**
  * Container
@@ -20,6 +27,7 @@ let contentNullPtr = document.querySelector(".nodes__null");
  */
 
  let addInput = document.getElementById("add-input");
+ const addComboBox = document.getElementById("add-comboBox");
 
 
  /**
@@ -30,15 +38,50 @@ let contentNullPtr = document.querySelector(".nodes__null");
  const timeErrorMessage = 4000;
 
 
-addButton.addEventListener("click", ()=>{
+ /**
+  * Add node Events
+  */
+ addButton.addEventListener("click", ()=>{
     add();
 })
+
+ addInput.addEventListener("keydown", (keydown)=>{
+    if ( keydown.key === "Enter" ) return add();
+ })
+
+
+
 
 deleteButton.addEventListener("click", ()=>{
 
 });
 
+illuminationButton.addEventListener("click", ()=>{
+    startIllumiationNodes();
+});
 
+
+function illuminateNode( node ){
+    return new Promise( (resolve, reject)=>{
+
+        setTimeout( ()=>{
+            node.style.animation = "illuminateAllNode 1s ease alternate";
+            resolve("Ok");
+        }, 1000 );
+
+
+    } )  
+}
+
+
+async function startIllumiationNodes(){
+    allNodes = getAllNodes();
+
+    for ( node of allNodes ){
+        await illuminateNode( node );
+    }
+
+}
 
 
 
@@ -59,34 +102,87 @@ function validateField( value ) {
 
 
 function createNode(value) {
-        let node = document.createElement("DIV");
-        let content = document.createTextNode(value);
-        node.classList.add("nodes__node")
-        node.appendChild(content);
-
-        return node;
-    
-}
-
-function insertNode(node){
-
+    let node = document.createElement("DIV");
+    let content = document.createTextNode(value);
     let fragment = document.createDocumentFragment();
+    let arrow = new Image(100, 100);
+
+    node.classList.add("nodes__node", "hidden")
+    arrow.classList.add("nodes__arrow", "hidden")
+    
+    arrow.src = '../img/arrow.svg';
+    
+    node.appendChild(content);
     fragment.appendChild(node);
-    nodes.prepend(fragment);
+    fragment.appendChild(arrow);
+
+    return fragment;
+
+}
+
+function insertNode( fragment, side ){
+    if ( side === "Final" ) nodes.prepend(fragment);
+    else nodes.appendChild(fragment);
+
+}
+
+function startAnimationList( side ){
+    return new Promise( (resolve, reject)=>{
+
+        let animationName = side === "Frente" ? "moveToLeftNodes" : "moveToRightNodes";
+
+        nodes.style.animation =  `${animationName} 2s ease alternate`
+
+        setTimeout( ()=>{
+            ////ANIMATION NODES LIST
+            nodes.style.animation = "";
+            resolve("Ok")
+
+
+        }, 2000 );
+
+
+    } );
 
 }
 
 
-function startAnimationNode( node ){
-    return new Promise( (resolve)=>{
+function startAnimationArrow( side ){
+    return new Promise( ( resolve )=>{
+
+        let arrows = nodes.getElementsByClassName("nodes__arrow");
+        let numOfArrows = arrows.length;
+
+        let position = side === "Frente" ? ( numOfArrows - 1 ) : 0;
+
+        arrows[ position ].classList.remove("hidden");
+        arrows[ position ].style.animation = "addArrow .6s ease-in-out";
         
         setTimeout( ()=>{
-            getFirstNode().style.animation = "addNode 1s ease";
-            console.log("Deberia hacer una animacion . . .")
-            resolve("OK")
-            
-   
-        }, 0);
+            nodes.getElementsByClassName("nodes__arrow")[ position ].style.animation = "";
+            resolve("ok");
+
+        }, 600 );
+
+        
+
+    });
+
+}
+
+
+function startAnimationNode( side ){
+    return new Promise( (resolve)=>{
+        
+        let node = side === "Frente" ? getLastNode() : getFirstNode();
+        node.classList.remove("hidden");
+        node.style.animation = "addNode 1s ease";    
+        
+        setTimeout( ()=>{
+            node.style.animation = "";
+            resolve("OK");
+           
+        }, 1000);
    
    
     })
@@ -94,27 +190,29 @@ function startAnimationNode( node ){
 }
 
 
-function startAnimationNodes(){
-    nodes.style.animation = "moveToLeftNodes .7s ease";
-    return new Promise( (resolve)=>{
-
-        setTimeout( ()=>{
-            resolve("OK")
-
-        },700 );
-
-
-    } )  
-}
 
 const add = async ()=>{  
     try{
-        value = addInput.value;
+
+        disableAddbuttonToggle();
+
+        const value = addInput.value;
+        const side = addComboBox.value;
 
         await validateField( value );
         let node = createNode( value );
-        insertNode( node );
-        await startAnimationNode();
+        insertNode( node, side );
+        await startAnimationList( side );
+
+        if (side === "Frente"){
+            await startAnimationArrow( side );
+            await startAnimationNode( side );
+        }else{
+            await startAnimationNode( side );
+            await startAnimationArrow( side );
+        }
+
+        
 
         console.log("Congratulations, everything's' fine")
 
@@ -123,10 +221,16 @@ const add = async ()=>{
         console.log( `Erro: ` + e )
         showMessageError(e);
     }
+    finally{
+        disableAddbuttonToggle();
+    }
 
 };
 
 
+
+
+/** Private functions */
 
 function showMessageError(message) {
     contentMessage.innerHTML = `<p class="error-message">
@@ -144,14 +248,13 @@ function showMessageError(message) {
 function getLastNode() {
     if ( !isEmpty() ){
         let allNodes = document.getElementsByClassName("nodes__node");
-        return allNodes[-1];
+        return allNodes[ allNodes.length - 1 ];
     }
     
 }
 
 function isEmpty() {
     const allNodes = document.getElementsByClassName("nodes__node");
-    console.log( allNodes[ allNodes.length -1 ] );
     return allNodes.length === true ? true : false; 
 }
 
@@ -167,4 +270,12 @@ function getAllNodes() {
     if ( !isEmpty() ){
         return document.getElementsByClassName("nodes__node");
     }
+}
+
+function disableAddbuttonToggle(){
+    addButton.toggleAttribute("disabled");
+    addButton.classList.toggle("disabled-btn");
+
+    addInput.classList.toggle("disabled-btn");
+    addInput.toggleAttribute("disabled");
 }
