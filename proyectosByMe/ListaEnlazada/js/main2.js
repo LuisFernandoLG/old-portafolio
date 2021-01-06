@@ -63,9 +63,11 @@ illuminationButton.addEventListener("click", ()=>{
 
 function illuminateNode( node ){
     return new Promise( (resolve, reject)=>{
+        node.style.animation = "illuminateAllNode 1s ease alternate";
 
         setTimeout( ()=>{
-            node.style.animation = "illuminateAllNode 1s ease alternate";
+            node.style.animation = "";
+
             resolve("Ok");
         }, 1000 );
 
@@ -105,22 +107,38 @@ function createNode(value) {
     let node = document.createElement("DIV");
     let content = document.createTextNode(value);
     let fragment = document.createDocumentFragment();
-    let arrow = new Image(100, 100);
-
-    node.classList.add("nodes__node", "hidden")
-    arrow.classList.add("nodes__arrow", "hidden")
     
-    arrow.src = '../img/arrow.svg';
+    node.classList.add("nodes__node");
+    
     
     node.appendChild(content);
     fragment.appendChild(node);
-    fragment.appendChild(arrow);
+    
+    return fragment;
+    
+}
 
+function createArrow(){
+    let arrow = new Image(100, 100);
+    let fragment = document.createDocumentFragment();
+    arrow.classList.add("nodes__arrow")
+    
+    arrow.src = '../img/arrow.svg';
+    
+    fragment.appendChild(arrow);
     return fragment;
 
 }
 
-function insertNode( fragment, side ){
+function insertNode( value, side ){
+    const fragment = createNode(value)
+    if ( side === "Final" ) nodes.prepend(fragment);
+    else nodes.appendChild(fragment);
+
+}
+
+function insertArrow( side ){
+    const fragment = createArrow();
     if ( side === "Final" ) nodes.prepend(fragment);
     else nodes.appendChild(fragment);
 
@@ -128,7 +146,6 @@ function insertNode( fragment, side ){
 
 function startAnimationList( side ){
     return new Promise( (resolve, reject)=>{
-
         let animationName = side === "Frente" ? "moveToLeftNodes" : "moveToRightNodes";
 
         nodes.style.animation =  `${animationName} 2s ease alternate`
@@ -155,7 +172,6 @@ function startAnimationArrow( side ){
 
         let position = side === "Frente" ? ( numOfArrows - 1 ) : 0;
 
-        arrows[ position ].classList.remove("hidden");
         arrows[ position ].style.animation = "addArrow .6s ease-in-out";
         
         setTimeout( ()=>{
@@ -172,10 +188,8 @@ function startAnimationArrow( side ){
 
 
 function startAnimationNode( side ){
-    return new Promise( (resolve)=>{
-        
+    return new Promise( (resolve)=>{ 
         let node = side === "Frente" ? getLastNode() : getFirstNode();
-        node.classList.remove("hidden");
         node.style.animation = "addNode 1s ease";    
         
         setTimeout( ()=>{
@@ -191,24 +205,36 @@ function startAnimationNode( side ){
 
 
 
+
+
+
+
+
+
+
+
+
 const add = async ()=>{  
     try{
 
-        disableAddbuttonToggle();
 
         const value = addInput.value;
         const side = addComboBox.value;
 
         await validateField( value );
-        let node = createNode( value );
-        insertNode( node, side );
         await startAnimationList( side );
 
         if (side === "Frente"){
+            insertArrow( side );
             await startAnimationArrow( side );
+
+            insertNode(value, side );
             await startAnimationNode( side );
         }else{
+            insertArrow( side );
             await startAnimationNode( side );
+            
+            insertNode(value, side );
             await startAnimationArrow( side );
         }
 
@@ -220,9 +246,6 @@ const add = async ()=>{
     catch(e){
         console.log( `Erro: ` + e )
         showMessageError(e);
-    }
-    finally{
-        disableAddbuttonToggle();
     }
 
 };
@@ -272,10 +295,10 @@ function getAllNodes() {
     }
 }
 
-function disableAddbuttonToggle(){
-    addButton.toggleAttribute("disabled");
-    addButton.classList.toggle("disabled-btn");
+// function disableAddbuttonToggle(){
+//     addButton.toggleAttribute("disabled");
+//     addButton.classList.toggle("disabled-btn");
 
-    addInput.classList.toggle("disabled-btn");
-    addInput.toggleAttribute("disabled");
-}
+//     addInput.classList.toggle("disabled-btn");
+//     addInput.toggleAttribute("disabled");
+// }
