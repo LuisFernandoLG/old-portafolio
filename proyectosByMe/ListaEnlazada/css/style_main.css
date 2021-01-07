@@ -52,7 +52,7 @@ img{
 .container{
     width: 100%;
     min-height: 100vh;
-    height: 100vh;
+    height: auto;
 
     margin: 0px auto;
 
@@ -315,7 +315,7 @@ img{
     animation: click .3s ease;
 }
 
-/* Special buttons */
+/* Special buttons --------------------------------------------------------------------------------------------- */
 .special-options{
     display: flex;
     flex-direction: column;
@@ -326,7 +326,7 @@ img{
 }
 
 .special-options__btn{
-    
+    margin: 0.9rem;
     color: var(--colorTwo);
 
     font-size: 0.9375rem;
@@ -650,7 +650,11 @@ LETRETOS
 
 @media screen and ( max-width:400px ){
     html{
-        font-size: 6px;
+        font-size: 13px;
+    }
+
+    .header__tittle{
+        font-size: 1.9rem;
     }
 
     .options{
