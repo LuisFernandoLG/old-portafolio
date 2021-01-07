@@ -1,16 +1,37 @@
 :root{
     /*colors*/
-    --primary-color:#222831;
+
+    /* Dark Theme */
+    /* --primary-color:#222831;
+    --colorThree:#393e46;
     --secunday-color:#eeeeee;
+    --colorTwo:#ffd369;
+    --colorOne:rgb(166, 211, 226); */
 
+
+    /* Light Theme */
+    --primary-color:#db6400;
+    --secunday-color:#f8f1f1;
+
+    --colorTwo:#272727;
+    --colorOne:rgb(166, 211, 226);
+    --colorThree:#ffa62b;
+
+
+    --border-radius-options:12px;
+
+    /* Scarlet Theme */
+    /* --primary-color:#db6400;
+    --colorThree:#ffa62b;
+    --secunday-color:#eeeeee;
+    --colorTwo:#16697a;
     --colorOne:lightblue;
-
+     */
+    
     --disable-btn-color:rgb(199, 194, 194);
 
     --gray:#ebe6e655;
 
-    --beautiful-yellow:#ffd369;
-    --light-dark:#393e46;
 
     --error-color:#D0312D;
 
@@ -26,6 +47,8 @@
 
 body{
     font-family: "Gotham";
+
+    background: var(--secunday-color);
 }
 
 img{
@@ -82,7 +105,8 @@ img{
 }
 
 .header__tittle-bold{
-    color: var(--beautiful-yellow);
+    color: var(--colorTwo);
+
 }
 
 
@@ -100,60 +124,63 @@ img{
 }
 
 /*  List */
-
 .list{
+    overflow-x: auto;
+    max-width: 90%;
+
+    padding: 20px;
+
+    display: flex;
+
+}
+
+.node{
+    max-height: 120px;
+
+    min-width: 120px;
+    min-height: 120px;
+
+
+    border: 4px solid var(--primary-color);
+    background: var(--secunday-color);
     
-    max-width: 90vw;
+    font-size: 40px;
+
+    border-radius: 50%;
 
 
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
+}
 
-
-
-    margin: 10px 0;
-
-
-
+.node__value{
+    color: var(--primary-color);
     
 }
 
-/*Nodes ------------------------------------------------------------------------------------------*/
+.arrow{
+    min-width: var(--width-arrow);
+    min-height: var(--height-arrow);
 
-.nodes{
-
-    max-width: 90vw;
-
-    overflow-x: auto;
-
-    display: flex;
-
-
-    padding: 20px;
-
-}
-
-.nodes__node{
-    padding: 10px;
-    min-width: 150px;
-
-
-    border: 2px solid var(--primary-color);
-    font-size: 40px;
-
-    background: var(--secunday-color);
-
-}
-
-.nodes__arrow{
-    width: var(--width-arrow);
-    height: var(--height-arrow);
+    max-width: var(--width-arrow);
+    max-height: var(--height-arrow);
 
     padding: 10px;
 
     animation: shakeArrow 1s alternate ease-out;
-    
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.arrow__img{
+    width: 80%;
+    height: 80%;
+
 
 }
 
@@ -174,6 +201,11 @@ img{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    border-radius: var(--border-radius-options);
+
+    box-shadow: 1px 1px 30px var(--primary-color);
+
 }
 
 .option-header{
@@ -182,12 +214,12 @@ img{
 
     padding: 10px;
 
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
+    border-top-left-radius: var(--border-radius-options);
+    border-top-right-radius: var(--border-radius-options);
     
 
 }
@@ -198,15 +230,23 @@ img{
 }
 
 .comboBox{
-    background: var(--light-dark);
+    background: var(--secunday-color);
     border: none;
-    color: var(--secunday-color);
     padding: 5px 10px;
     margin-right: 10px;
+
+    border-radius: var(--border-radius-options);
+
+    color: var(--primary-color);
+    font-size: 20px;
+}
+
+.comboBox__option{
+
 }
 
 .option-body{
-    background: var(--secunday-color);
+    background: var();
     width: 100%;
 
     display: flex;
@@ -226,17 +266,24 @@ img{
     font-size: 20px;
 
     border: none;
+    border-bottom: 2px solid var(--primary-color);
+
+    background-color: var(--colorThree);
+}
+
+.option-body__input:focus{
+    outline: none;
 }
 
 /* Buttons */
 .option-body__button{
-    background-color: var(--light-dark);
     margin: 20px 0;
     padding: 6px 20px;
 
     border-radius: 12px;
 
-    color: var(--secunday-color);
+    color: var(--colorTwo);
+    font-size: 15px;
 
     cursor: pointer;
 
@@ -246,13 +293,35 @@ img{
     animation: click .3s ease;
 }
 
+/* Special buttons */
+.special-options{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 
-.option__btn-animation{
-    background-color: var(--primary-color);
+    height: 100%;
+}
+
+.special-options__btn{
+    
+    color: var(--colorTwo);
+
+    font-size: 15px;
+    padding: 10px;
+
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.option-body__button, .special-options__btn{
+    background: var(--colorThree);
     color: var(--secunday-color);
 
-    padding: 10px;
-    border-radius: 12px;
+}
+
+.special-options__btn:active{
+    animation: click .5s ease alternate;
 }
 
 /* Footer ------------------------------------------------*/
@@ -267,14 +336,17 @@ img{
     text-align: center;
 
     padding: 15px;
+    font-size: 20px;
 }
 
 .credits__name{
-    color: var(--secunday-color);
-    background: var(--light-dark);
+    background: var(--colorTwo);
+
+    font-size: 15px;
+    color: var(--primary-color);
     
     padding: 7px;
-    border-radius: 12px;
+    border-radius: 20px;
 }
 
 /* error-message */
@@ -283,8 +355,7 @@ img{
     font-size: 17px;
 
     color: var(--error-color);
-    
-    
+    animation : startMessageAnimation .5s ease alternate;
 }
 
 
@@ -303,31 +374,25 @@ img{
     0%{
         transform: scale(.9);
     }
-    100%{
+    50%{
         transform: scale(1);
         background: var(--primary-color);
     }
-}
-
-@keyframes addNode{
-
-    0%{
-        transform: translateY(-200px);
-    }
-
-
     100%{
         
-        transform: scale(1);
     }
 }
 
-@keyframes addArrow{
+@keyframes addNodeAnimation{
 
     0%{
         transform: scale(0);
     }
 
+    50%{
+        transform: scale(1.1);
+    }
+
 
     100%{
         
@@ -335,7 +400,23 @@ img{
     }
 }
 
-@keyframes deleteNode{
+@keyframes addArrowAnimation{
+
+    0%{
+        transform: scale(0);
+    }
+
+    50%{
+        transform: scale(1.1);
+    }   
+
+    100%{
+        transform: scale(1);
+        
+    }
+}
+
+@keyframes DeleteNodeAnimation{
     0%{
         transform: scale(1.3);
     }
@@ -343,10 +424,34 @@ img{
     100%{
         
         transform: scale(0);
-        box-shadow: 1px 1px 20px var(--primary-color);
 
     }
 }
+
+@keyframes DeleteArrowAnimation{
+    0%{
+        transform: scale(1.3);
+    }
+
+    100%{
+        transform: scale(0);
+    }
+}
+
+@keyframes startMessageAnimation{
+    0%{
+        transform: scale(1);
+    }
+
+    50%{
+        transform: scale(1.1);
+    }
+
+    100%{
+    }
+}
+
+
 
 @keyframes moveToRightNodes{
     0%{
@@ -378,8 +483,8 @@ img{
     }
 
     100%{
-        background-color: var(--colorOne);
-        color: var(--primary-color);
+        background-color: var(--colorTwo);
+        color: var(--secunday-color);
     }
 }
 
@@ -394,10 +499,6 @@ img{
     }
 }
 
-.disabled-btn{
-    background: var(--disable-btn-color);
-}
-
 @keyframes shakeArrow{
     0%{
 
@@ -405,6 +506,7 @@ img{
 
     30%{
         transform: rotate(10deg);
+
     }
 
     60%{
@@ -423,13 +525,39 @@ img{
 
     }
     50%{
-        background: var(--beautiful-yellow);
+        background: var(--colorTwo);
+        transform: scale(1.3);
+    }
+    100%{
+        transform: scale(1);
+    }
+
+
+}
+
+@keyframes danceNodeAnimation{
+    0%{
+
+    }
+    50%{
+        transform: scale(1.2);
     }
     100%{
 
     }
+}
 
+@keyframes glowText{
+    0%{
 
+    }
+    50%{
+        
+    }
+    100%{
+        text-shadow: 0px 0px 40px  var(--secunday-color);
+
+    }
 }
 
 
@@ -453,14 +581,14 @@ LETRETOS
 }
 
 
-.nodes__node:nth-child(1)::before {
+.node:first-child::after {
     content: "Final";
 
     background-color: var(--primary-color);
     color: #eeeeee;
-    font-size: 20px;
+    font-size: 12px;
 
-    padding: 10px;
+    padding: 5px;
     border-radius: 12px;
     font-weight: 600;
 
@@ -470,26 +598,17 @@ LETRETOS
 
 
 /* Seleccionar ultimo */
-.nodes__node:last-of-type::after{
+.list div:nth-last-child(2)::before{
     content: "Frente";
 
-    background-color: var(--beautiful-yellow);
-    color: var(--primary-color);
-    font-size: 20px;
+    background-color: var(--colorTwo);
+    color: var(--secunday-color);
+    font-size: 12px;
 
-    padding: 10px;
+    padding: 5px;
     border-radius: 12px;
     font-weight: 600;
 
     animation: frontNodeAnimation 3s infinite alternate ease;
  
 }
-
-
-
-
-/*  **/
-.hidden{
-    visibility: hidden;
-}
-
