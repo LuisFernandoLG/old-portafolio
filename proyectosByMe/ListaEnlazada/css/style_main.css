@@ -77,15 +77,13 @@ body{
     
 
 
-
-}
-
-.header-open{
 }
 
 .header-open__btn{
-    font-size: 40px;
+    font-size: 2.5rem;
     color: var(--colorTwo);
+
+    cursor: pointer;
 }
 .header-open__btn:active{
     animation: click .5s ease alternate;
@@ -94,7 +92,6 @@ body{
 .header__tittle{
 
     color: var(--secundary-color);
-    text-align: center;
 
     padding: 1.25rem;
 
@@ -681,6 +678,9 @@ LETRETOS
 *
 */
 
+
+
+
 @media screen and ( max-width:700px ){
     html{
         font-size: 14px;
@@ -713,20 +713,44 @@ LETRETOS
 
 }
 
-@media screen and ( max-width:400px ){
-    html{
-        font-size: 13px;
-    }
+@media screen and ( max-width:600px ){
 
+    .header{
+        padding: 10px;
+        flex-wrap: wrap;
+    }
     .header__tittle{
-        font-size: 1.9rem;
+        width: 100vw;
+        text-align: center;
+        order: -100;
+
     }
     
 
 }
 
 
+@media screen and ( max-width:400px ){
+    html{
+        font-size: 13px;
+    }
 
+    .header__tittle{
+        font-size: 1.7rem;
+    }
+    
+
+}
+
+
+/* Ajustes de Settings bar mobile */
+
+@media screen and ( max-width:1180px ){
+    
+
+    
+
+}
 
 
 
@@ -750,12 +774,13 @@ LETRETOS
 
     background-color: var(--colorThree);
 
-    width: 20vw;
+    width: 20.75rem;
     height: 100vh;
 
     position: absolute;
     z-index: 100;
     left: 0;
+    top: 0;
 
     display: none;
     flex-direction: column;
@@ -773,8 +798,10 @@ LETRETOS
 }
 
 .settings-close__btn{
-    font-size: 50px;
+    font-size: 3.125rem;
     color: var(--colorTwo);
+
+    cursor: pointer;
 }
 
 .settings-close__btn:active{
@@ -783,7 +810,7 @@ LETRETOS
 
 .settings__tittle{
 
-    font-size: 45px;
+    font-size: 3rem;
     color: var(--colorTwo);
     text-align: center;
 }
@@ -793,7 +820,7 @@ LETRETOS
 }
 
 .settings-option__label{
-    font-size: 18px;
+    font-size: 1.125rem;
     color: var(--secundary-color);
 }
 
@@ -808,9 +835,11 @@ LETRETOS
 .settings__btn{
     background: var(--secundary-color);
     padding: 15px 20px;
-    font-size: 20px;
+    font-size: 1.25rem;
 
     border-radius: var(--border-radius-options);
+
+    cursor: pointer;
 }
 
 .settings__btn:active{
