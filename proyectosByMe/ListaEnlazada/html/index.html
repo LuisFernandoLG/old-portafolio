@@ -24,7 +24,15 @@
     <div class="container">
 
         <header class="header">
-            <h1 class="header__tittle weight-800">Lista <span class="header__tittle-bold">simplemente</span> enlazada</h1>
+            <h1 class="header__tittle weight-800">Linked <span class="header__tittle-bold">Simple</span> List</h1>
+
+            <div class="themes-container">
+                <select class="themes-comboBox weight-500" name="themes-comboBox" id="themes-comboBox">
+                    <option value="Dark Theme" class="themes-comboBox__option weight-400">Dark Theme</option>
+                    <option value="Scartlett Theme" class="themes-comboBox__option weight-400">Scarlett Theme</option>
+                    
+                </select>
+            </div>
         </header>
 
         <main class="main">
@@ -36,7 +44,8 @@
                         </p>
                     </div>
                     <div class="arrow">
-                        <img class="arrow__img" src="../img/arrow.svg" alt="Arrow">
+                        <i class="fas fa-long-arrow-alt-right arrow__i"></i>
+                        
                     </div>
                 </div> 
                 
@@ -50,44 +59,43 @@
             <div class="options">
                 <div class="option">
                     <div class="option-header">
-                        <img src="../img/buttonDelete.svg" alt="delete" class="option-header__icon">
+                        <i class="fas fa-minus-circle option-header__icon"></i>            
+                        
                         <select name="comboBox" id="delete-comboBox" class="comboBox weight-500">
-                            <option value="Frente" class="comboBox__option weight-400">Frente</option>
-                            <option value="Final" class="comboBox__option weight-400">Final</option>
+                            <option value="Front" class="comboBox__option weight-400">Front</option>
+                            <option value="Back" class="comboBox__option weight-400">Back</option>
                             
                         </select>
                     </div>
                     <div class="option-body">
-                        <div id="delete-button" class="option-body__button weight-500">Eliminar</div>
+                        <div id="delete-button" class="option-body__button weight-500">Remove</div>
                     </div>
                 </div>
-
+                
                 <div class="special-options">
                     <div class="special-options__btn weight-500" id="danceButton">Dance!</div>
-                    <div class="special-options__btn weight-500" id="deleteAllButton">eliminar todo</div>
+                    <div class="special-options__btn weight-500" id="deleteAllButton">Delete all</div>
                     
                 </div>
-
+                
                 <div class="option">
                     <div class="option-header">
-                            <img src="../img/buttonAdd.svg" alt="add" class="option-header__icon">
+                        <i class="fas fa-plus-circle option-header__icon"></i>
                             <select name="comboBox" id="add-comboBox" class="comboBox weight-500">
-                                <option value="Frente" class="comboBox__option">Frente</option>
-                                <option value="Final" class="comboBox__option">Final</option>
+                                <option value="Front" class="comboBox__option">Front</option>
+                                <option value="Back" class="comboBox__option">Back</option>
                                 
                             </select>
                     </div>
                     <div class="option-body">
-                        <input id="add-input" type="number" class="option-body__input">
+                        <input placeholder="Número..." id="add-input" type="number" class="option-body__input">
                         
-                        <a id="add-button" class="option-body__button weight-500">Añadir</a>
+                        <a id="add-button" class="option-body__button weight-500">Add</a>
                     </div>
 
                     
                 </div>
             </div>
-
-
 
         </main>
 

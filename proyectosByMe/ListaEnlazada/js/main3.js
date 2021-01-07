@@ -7,6 +7,7 @@ const danceButton = document.getElementById("danceButton");
 //Combo Box
 const addComboBox = document.getElementById("add-comboBox");
 const deleteComboBox = document.getElementById("delete-comboBox");
+const ThemeComboBox = document.getElementById("themes-comboBox");
 
 //Inputs
 const addInput = document.getElementById("add-input");
@@ -41,6 +42,10 @@ danceButton.addEventListener("click", ()=>{
     danceList();
 });
 
+ThemeComboBox.addEventListener("change", ()=>{
+    changeThemeComboBox();
+})
+
 
 
 async function insertNode(){
@@ -51,11 +56,11 @@ async function insertNode(){
         let objectNode = createNode( addInput.value );
         let objectArrow = createArrow();
 
-        if ( addComboBox.value === "Frente" ){
+        if ( addComboBox.value === "Front" ){
             list.appendChild( objectNode.nodeFragment );
             list.appendChild( objectArrow.arrowFragment );
         }else{
-            console.log("Final")
+            
             list.prepend( objectArrow.arrowFragment );
             list.prepend( objectNode.nodeFragment );
         }
@@ -76,14 +81,14 @@ async function insertNode(){
 async function deleteNode(){
     cleanMessage();
     try {        
-        await isEmpty();
+        await isEmpty("There's not nodes to remove");
 
         let node;
         let arrow;
 
         let allNodes = document.getElementsByClassName("node");
 
-        if ( deleteComboBox.value === "Final" ){
+        if ( deleteComboBox.value === "Back" ){
             node = document.getElementsByClassName("node")[0];
             arrow = document.getElementsByClassName("arrow")[0];
 
@@ -99,44 +104,61 @@ async function deleteNode(){
     } catch (error) {
         showMessageError(error);
     }
-    //await startDeleteArrowAnimation(arrow);
     
-
 }
 
-async function cleanList(){ 
-    size = getSize();   
-    for ( let i = 0; i < size ; i++ ){
-        
-        let node;
-        let arrow;
-        
-        node = document.getElementsByClassName("node")[0];
-        arrow = document.getElementsByClassName("arrow")[0];
+async function cleanList(){
+    
+    try {
 
-        await startDeleteNodeAnimation(node, arrow);
-        node.remove();
-        arrow.remove();    
+        await isEmpty("There's nothing to remove")
 
+        size = getSize();   
+        for ( let i = 0; i < size ; i++ ){
+            
+            let node;
+            let arrow;
+            
+            node = document.getElementsByClassName("node")[0];
+            arrow = document.getElementsByClassName("arrow")[0];
+    
+            await startDeleteNodeAnimation(node, arrow);
+            node.remove();
+            arrow.remove();    
+    
+        }
+        
+    } catch (error) {
+        showMessageError(error);
     }
 
 }
 
 
 async function danceList(){
-    size = getSize();
 
-    for ( let i = 0; i < size; i++ ){
-        let node;
-        let arrow;
+    try{
 
-        node = document.getElementsByClassName("node")[i];
-        arrow = document.getElementsByClassName("arrow")[i];
-        
+        await isEmpty("There's not nodes to dance!");
 
-        await startDanceNodeAnimation(node);
-        await startDanceArrowAnimation(arrow);
-        
+        size = getSize();
+    
+        for ( let i = 0; i < size; i++ ){
+            let node;
+            let arrow;
+    
+            node = document.getElementsByClassName("node")[i];
+            arrow = document.getElementsByClassName("arrow")[i];
+            
+    
+            await startDanceNodeAnimation(node);
+            await startDanceArrowAnimation(arrow);
+            
+        }
+
+    }
+    catch(error){
+        showMessageError(error);
     }
 }
 
@@ -169,15 +191,13 @@ function createNode(valueToAdd){
 
 function createArrow(){
     let arrowFragment = document.createDocumentFragment();
-    let arrowImg = new Image(100, 100);
+    let arrowI = document.createElement("I");
     let arrowContainer = document.createElement("DIV");
 
-    arrowImg.classList.add("arrow__img");
+    arrowI.classList.add("arrow__i","fas", "fa-long-arrow-alt-right");
     arrowContainer.classList.add("arrow");
 
-    arrowImg.src = "../img/arrow.svg";
-
-    arrowContainer.appendChild(arrowImg);
+    arrowContainer.appendChild(arrowI);
     arrowFragment.appendChild(arrowContainer);
 
     return {arrow : arrowContainer, arrowFragment : arrowFragment};
@@ -275,9 +295,46 @@ function getSize(){
     return document.getElementsByClassName("node").length;
 }
 
-function isEmpty(){
+function isEmpty( message ){
     return new Promise ((resolve, reject)=>{
         if ( getSize() !== 0 ) resolve("Ok!");
-        else reject("There's not nodes to remove")
+        else reject(message)
     });
 }
+
+function changeThemeComboBox(){
+    let rootStyles = document.documentElement;
+    const theme = ThemeComboBox.value;
+
+    console.log(theme)
+
+    console.log( theme === "Scarlett Theme" );
+
+    switch(theme){
+        case "Scartlett Theme":
+            rootStyles.style.setProperty("--primary-color", "#db6400");
+            rootStyles.style.setProperty("--secundary-color", "#f8f1f1");
+            rootStyles.style.setProperty("--colorOne", "rgb(166, 211, 226)");
+            rootStyles.style.setProperty("--colorTwo", "#272727");
+            rootStyles.style.setProperty("--colorThree", "#ffa62b");
+
+            console.log(theme)
+            
+        break;
+
+        case "Dark Theme":
+            rootStyles.style.setProperty("--primary-color", "#222831");
+            rootStyles.style.setProperty("--secundary-color", "#eeeeee");
+            rootStyles.style.setProperty("--colorOne", "rgb(166, 211, 226)");
+            rootStyles.style.setProperty("--colorTwo", "#ffd369");
+            rootStyles.style.setProperty("--colorThree", "#393e46");
+            
+            console.log(theme)
+        break;
+
+    }
+
+
+}
+
+

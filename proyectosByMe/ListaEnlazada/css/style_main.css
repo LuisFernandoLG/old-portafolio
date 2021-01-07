@@ -2,34 +2,23 @@
     /*colors*/
 
     /* Dark Theme */
-    /* --primary-color:#222831;
-    --colorThree:#393e46;
-    --secunday-color:#eeeeee;
-    --colorTwo:#ffd369;
-    --colorOne:rgb(166, 211, 226); */
-
-
-    /* Light Theme */
-    --primary-color:#db6400;
-    --secunday-color:#f8f1f1;
-
-    --colorTwo:#272727;
+    --primary-color:#222831;
+    --secundary-color:#eeeeee;
     --colorOne:rgb(166, 211, 226);
-    --colorThree:#ffa62b;
+    --colorTwo:#ffd369;
+    --colorThree:#393e46;
 
-
-    --border-radius-options:12px;
 
     /* Scarlet Theme */
     /* --primary-color:#db6400;
-    --colorThree:#ffa62b;
-    --secunday-color:#eeeeee;
-    --colorTwo:#16697a;
-    --colorOne:lightblue;
-     */
-    
-    --disable-btn-color:rgb(199, 194, 194);
+    --secundary-color:#f8f1f1;
 
+    --colorOne:rgb(166, 211, 226);
+    --colorTwo:#272727;
+    --colorThree:#ffa62b; */
+
+
+    --border-radius-options:12px;
     --gray:#ebe6e655;
 
 
@@ -48,7 +37,7 @@
 body{
     font-family: "Gotham";
 
-    background: var(--secunday-color);
+    background: var(--secundary-color);
 }
 
 img{
@@ -93,10 +82,16 @@ img{
 
     background: var(--primary-color);
     width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .header__tittle{
-    color: var(--secunday-color);
+
+    color: var(--secundary-color);
     text-align: center;
 
     padding: 20px;
@@ -108,6 +103,30 @@ img{
     color: var(--colorTwo);
 
 }
+
+.themes-comboBox{
+
+    background: var(--colorThree);
+    border: none;
+    padding: 8px;
+    border-radius: var(--border-radius-options);
+    color: var(--secundary-color);
+
+    font-size: 15px;
+    cursor: pointer;
+
+
+}
+.themes-comboBox:focus{
+    outline: none;
+}
+
+.themes-comboBox__option{
+    border-bottom-left-radius: var(--border-radius-options);
+    font-size: 15px;
+
+}
+
 
 
 /* Miain ---------------------------------------------- */
@@ -142,7 +161,7 @@ img{
 
 
     border: 4px solid var(--primary-color);
-    background: var(--secunday-color);
+    background: var(--secundary-color);
     
     font-size: 40px;
 
@@ -161,12 +180,6 @@ img{
 }
 
 .arrow{
-    min-width: var(--width-arrow);
-    min-height: var(--height-arrow);
-
-    max-width: var(--width-arrow);
-    max-height: var(--height-arrow);
-
     padding: 10px;
 
     animation: shakeArrow 1s alternate ease-out;
@@ -174,13 +187,13 @@ img{
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 
 }
 
-.arrow__img{
-    width: 80%;
-    height: 80%;
-
+.arrow__i{
+    font-size: 80px;
+    color: var(--primary-color);
 
 }
 
@@ -225,12 +238,12 @@ img{
 }
 
 .option-header__icon{
-    width: 30px;
-    height: 30px;
+    font-size: 40px;
+    color: var(--secundary-color);
 }
 
 .comboBox{
-    background: var(--secunday-color);
+    background: var(--secundary-color);
     border: none;
     padding: 5px 10px;
     margin-right: 10px;
@@ -239,6 +252,13 @@ img{
 
     color: var(--primary-color);
     font-size: 20px;
+
+    cursor: pointer;
+
+}
+
+.comboBox:focus{
+    outline: none;
 }
 
 .comboBox__option{
@@ -266,13 +286,21 @@ img{
     font-size: 20px;
 
     border: none;
-    border-bottom: 2px solid var(--primary-color);
+    border-bottom: 5px solid var(--primary-color);
 
     background-color: var(--colorThree);
+    color: var(--secundary-color);
+
+}
+
+.option-body__input::placeholder{
+    font-size: 15px;
 }
 
 .option-body__input:focus{
     outline: none;
+    border:none;
+
 }
 
 /* Buttons */
@@ -316,7 +344,7 @@ img{
 
 .option-body__button, .special-options__btn{
     background: var(--colorThree);
-    color: var(--secunday-color);
+    color: var(--secundary-color);
 
 }
 
@@ -332,7 +360,7 @@ img{
 }
 
 .credits{
-    color: var(--secunday-color);
+    color: var(--secundary-color);
     text-align: center;
 
     padding: 15px;
@@ -484,7 +512,7 @@ img{
 
     100%{
         background-color: var(--colorTwo);
-        color: var(--secunday-color);
+        color: var(--secundary-color);
     }
 }
 
@@ -495,7 +523,7 @@ img{
 
     100%{
         background-color: var(--primary-color);
-        color: var(--secunday-color);
+        color: var(--secundary-color);
     }
 }
 
@@ -555,7 +583,7 @@ img{
         
     }
     100%{
-        text-shadow: 0px 0px 40px  var(--secunday-color);
+        text-shadow: 0px 0px 40px  var(--secundary-color);
 
     }
 }
@@ -582,7 +610,7 @@ LETRETOS
 
 
 .node:first-child::after {
-    content: "Final";
+    content: "Back";
 
     background-color: var(--primary-color);
     color: #eeeeee;
@@ -599,10 +627,10 @@ LETRETOS
 
 /* Seleccionar ultimo */
 .list div:nth-last-child(2)::before{
-    content: "Frente";
+    content: "Front";
 
     background-color: var(--colorTwo);
-    color: var(--secunday-color);
+    color: var(--secundary-color);
     font-size: 12px;
 
     padding: 5px;
