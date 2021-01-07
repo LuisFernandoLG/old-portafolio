@@ -9,19 +9,7 @@
     --colorThree:#393e46;
 
 
-    /* Scarlet Theme */
-    /* --primary-color:#db6400;
-    --secundary-color:#f8f1f1;
-
-    --colorOne:rgb(166, 211, 226);
-    --colorTwo:#272727;
-    --colorThree:#ffa62b; */
-
-
     --border-radius-options:12px;
-    --gray:#ebe6e655;
-
-
     --error-color:#D0312D;
 
 
@@ -37,7 +25,6 @@
 body{
     font-family: "Gotham";
 
-    background: var(--secundary-color);
 }
 
 img{
@@ -94,9 +81,9 @@ img{
     color: var(--secundary-color);
     text-align: center;
 
-    padding: 20px;
+    padding: 1.25rem;
 
-    font-size: 40px;
+    font-size: 3rem;
 }
 
 .header__tittle-bold{
@@ -112,7 +99,7 @@ img{
     border-radius: var(--border-radius-options);
     color: var(--secundary-color);
 
-    font-size: 15px;
+    font-size: 0.9375rem;
     cursor: pointer;
 
 
@@ -123,7 +110,7 @@ img{
 
 .themes-comboBox__option{
     border-bottom-left-radius: var(--border-radius-options);
-    font-size: 15px;
+    font-size: 0.9375rem;
 
 }
 
@@ -145,25 +132,30 @@ img{
 /*  List */
 .list{
     overflow-x: auto;
-    max-width: 90%;
+    max-width: 95%;
 
     padding: 20px;
-
+    
     display: flex;
+
+    margin: 10px;
+
 
 }
 
 .node{
-    max-height: 120px;
 
-    min-width: 120px;
-    min-height: 120px;
+    max-height: 10.5rem;
+
+    min-width: 10.5rem;
+    min-height: 10.5rem;
+
 
 
     border: 4px solid var(--primary-color);
     background: var(--secundary-color);
     
-    font-size: 40px;
+    font-size: 2.5rem;
 
     border-radius: 50%;
 
@@ -180,7 +172,7 @@ img{
 }
 
 .arrow{
-    padding: 10px;
+    padding: 5px;
 
     animation: shakeArrow 1s alternate ease-out;
 
@@ -192,7 +184,7 @@ img{
 }
 
 .arrow__i{
-    font-size: 80px;
+    font-size: 6rem;
     color: var(--primary-color);
 
 }
@@ -208,7 +200,7 @@ img{
 
 .option{
 
-    width: 200px;
+    width: 14.5rem;
 
     display: flex;
     flex-direction: column;
@@ -218,6 +210,7 @@ img{
     border-radius: var(--border-radius-options);
 
     box-shadow: 1px 1px 30px var(--primary-color);
+    
 
 }
 
@@ -238,20 +231,20 @@ img{
 }
 
 .option-header__icon{
-    font-size: 40px;
+    font-size: 2.5rem;
     color: var(--secundary-color);
 }
 
 .comboBox{
     background: var(--secundary-color);
     border: none;
-    padding: 5px 10px;
-    margin-right: 10px;
+    padding: 0.3125rem 0.625rem;
+    margin-left: 0.625rem;
 
     border-radius: var(--border-radius-options);
 
     color: var(--primary-color);
-    font-size: 20px;
+    font-size: 1.25rem;
 
     cursor: pointer;
 
@@ -264,6 +257,7 @@ img{
 .comboBox__option{
 
 }
+
 
 .option-body{
     background: var();
@@ -283,7 +277,7 @@ img{
 
     text-align: center;
 
-    font-size: 20px;
+    font-size: 1.25rem;
 
     border: none;
     border-bottom: 5px solid var(--primary-color);
@@ -294,7 +288,7 @@ img{
 }
 
 .option-body__input::placeholder{
-    font-size: 15px;
+    font-size: 0.9375rem;
 }
 
 .option-body__input:focus{
@@ -306,12 +300,12 @@ img{
 /* Buttons */
 .option-body__button{
     margin: 20px 0;
-    padding: 6px 20px;
+    padding: 0.9rem 1.5rem;
 
     border-radius: 12px;
 
     color: var(--colorTwo);
-    font-size: 15px;
+    font-size: 1.2rem;
 
     cursor: pointer;
 
@@ -335,10 +329,10 @@ img{
     
     color: var(--colorTwo);
 
-    font-size: 15px;
-    padding: 10px;
+    font-size: 0.9375rem;
+    padding: 1rem 1.9rem;
 
-    border-radius: 12px;
+    border-radius: var(--border-radius-options);
     cursor: pointer;
 }
 
@@ -364,13 +358,13 @@ img{
     text-align: center;
 
     padding: 15px;
-    font-size: 20px;
+    font-size: 1.25rem;
 }
 
 .credits__name{
     background: var(--colorTwo);
 
-    font-size: 15px;
+    font-size: 0.9375rem;
     color: var(--primary-color);
     
     padding: 7px;
@@ -380,7 +374,7 @@ img{
 /* error-message */
 
 .error-message{
-    font-size: 17px;
+    font-size: 1.0625rem;
 
     color: var(--error-color);
     animation : startMessageAnimation .5s ease alternate;
@@ -614,10 +608,10 @@ LETRETOS
 
     background-color: var(--primary-color);
     color: #eeeeee;
-    font-size: 12px;
+    font-size: 1.2rem;
 
     padding: 5px;
-    border-radius: 12px;
+    border-radius: var(--border-radius-options);
     font-weight: 600;
 
     animation: backNodeAnimation 3s infinite alternate ease;
@@ -631,12 +625,52 @@ LETRETOS
 
     background-color: var(--colorTwo);
     color: var(--secundary-color);
-    font-size: 12px;
+    font-size: 1.2rem;
 
     padding: 5px;
-    border-radius: 12px;
+    border-radius: var(--border-radius-options);
     font-weight: 600;
 
     animation: frontNodeAnimation 3s infinite alternate ease;
  
 }
+
+
+/*
+*
+* Responvise design
+*
+*/
+
+@media screen and ( max-width:630px ){
+    html{
+        font-size: 10px;
+    }
+}
+
+@media screen and ( max-width:400px ){
+    html{
+        font-size: 6px;
+    }
+
+    .options{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .option{
+        margin: 15px 0;
+        width: 20rem;
+    }
+
+    .special-options__btn{
+        margin: 5px 0;
+
+    }
+
+    .special-options{
+        order: -10;
+    }
+}
+
