@@ -28,6 +28,8 @@ let contentNullPtr = document.querySelector(".nodes__null");
 
  let addInput = document.getElementById("add-input");
  const addComboBox = document.getElementById("add-comboBox");
+ const deleteComboBox = document.getElementById("delete-comboBox");
+ 
 
 
  /**
@@ -53,7 +55,7 @@ let contentNullPtr = document.querySelector(".nodes__null");
 
 
 deleteButton.addEventListener("click", ()=>{
-
+    deleteNode();
 });
 
 illuminationButton.addEventListener("click", ()=>{
@@ -120,7 +122,7 @@ function createNode(value) {
 
 }
 
-function insertNode( fragment, side ){
+function insertNodeAndArrow( fragment, side ){
     if ( side === "Final" ) nodes.prepend(fragment);
     else nodes.appendChild(fragment);
 
@@ -129,17 +131,17 @@ function insertNode( fragment, side ){
 function startAnimationList( side ){
     return new Promise( (resolve, reject)=>{
 
-        let animationName = side === "Frente" ? "moveToLeftNodes" : "moveToRightNodes";
-
-        nodes.style.animation =  `${animationName} 2s ease alternate`
-
+        
         setTimeout( ()=>{
             ////ANIMATION NODES LIST
-            nodes.style.animation = "";
+            let animationName = side === "Frente" ? "moveToLeftNodes" : "moveToRightNodes";
+    
+            nodes.style.animation =  `${animationName} 1s ease alternate`
+            
             resolve("Ok")
 
 
-        }, 2000 );
+        }, 0 );
 
 
     } );
@@ -149,17 +151,16 @@ function startAnimationList( side ){
 
 function startAnimationArrow( side ){
     return new Promise( ( resolve )=>{
-
-        let arrows = nodes.getElementsByClassName("nodes__arrow");
-        let numOfArrows = arrows.length;
-
-        let position = side === "Frente" ? ( numOfArrows - 1 ) : 0;
-
-        arrows[ position ].classList.remove("hidden");
-        arrows[ position ].style.animation = "addArrow .6s ease-in-out";
         
         setTimeout( ()=>{
-            nodes.getElementsByClassName("nodes__arrow")[ position ].style.animation = "";
+            let arrows = nodes.getElementsByClassName("nodes__arrow");
+            let numOfArrows = arrows.length;
+    
+            let position = side === "Frente" ? ( numOfArrows - 1 ) : 0;
+    
+            arrows[ position ].classList.remove("hidden");
+            arrows[ position ].style.animation = "addArrow .6s ease-in-out";
+
             resolve("ok");
 
         }, 600 );
@@ -172,17 +173,16 @@ function startAnimationArrow( side ){
 
 
 function startAnimationNode( side ){
-    return new Promise( (resolve)=>{
-        
-        let node = side === "Frente" ? getLastNode() : getFirstNode();
-        node.classList.remove("hidden");
-        node.style.animation = "addNode 1s ease";    
-        
+    return new Promise( (resolve)=>{   
         setTimeout( ()=>{
-            node.style.animation = "";
+            let node = side === "Frente" ? getLastNode() : getFirstNode();
+            node.classList.remove("hidden");
+          
+            node.style.animation = `addNode 1s ease alternate`
+            
             resolve("OK");
            
-        }, 1000);
+        }, 600);
    
    
     })
@@ -193,7 +193,6 @@ function startAnimationNode( side ){
 
 const add = async ()=>{  
     try{
-
         disableAddbuttonToggle();
 
         const value = addInput.value;
@@ -201,15 +200,15 @@ const add = async ()=>{
 
         await validateField( value );
         let node = createNode( value );
-        insertNode( node, side );
+        insertNodeAndArrow( node, side );
         await startAnimationList( side );
 
         if (side === "Frente"){
-            await startAnimationArrow( side );
             await startAnimationNode( side );
+            await startAnimationArrow( side );
         }else{
-            await startAnimationNode( side );
             await startAnimationArrow( side );
+            await startAnimationNode( side );
         }
 
         
@@ -227,6 +226,30 @@ const add = async ()=>{
 
 };
 
+
+
+async function deleteNode(){
+    const side = addComboBox.value;
+    let node = side === "Frente" ? getLastNode() : getFirstNode();
+
+    await startAnimationNode(node);
+    node.remove();
+
+
+
+}
+
+
+function startDeleteNodeAnimation( node ){
+    return new Promise( ()=>{
+        setTimeout( ()=>{
+            node.style.animation = "deleteNodeAnimation 1s ease"
+
+        },1000 );
+
+
+    } );
+}
 
 
 

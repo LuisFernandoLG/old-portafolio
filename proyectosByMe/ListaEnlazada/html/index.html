@@ -28,20 +28,22 @@
         </header>
 
         <main class="main">
-            <div class="list" id="list">
- 
                 
-                <div id="nodes" class="nodes">
-                    <div class="nodes__node">1</div>
-                    <img class="nodes__arrow" src="../img/arrow.svg" alt="Arrow">
+                <div id="list" class="list">
+                    <div class="node">
+                        <p class="node__value weight-500">
+                            1
+                        </p>
+                    </div>
+                    <div class="arrow">
+                        <img class="arrow__img" src="../img/arrow.svg" alt="Arrow">
+                    </div>
                 </div> 
                 
                 <div class="nodes__null"></div>
             
 
-            </div>
-
-            <div class="message">
+            <div class="message" id="message">
                 
             </div>
 
@@ -49,7 +51,7 @@
                 <div class="option">
                     <div class="option-header">
                         <img src="../img/buttonDelete.svg" alt="delete" class="option-header__icon">
-                        <select name="comboBox" id="delete-comboBox" class="comboBox">
+                        <select name="comboBox" id="delete-comboBox" class="comboBox weight-500">
                             <option value="Frente" class="comboBox__option weight-400">Frente</option>
                             <option value="Final" class="comboBox__option weight-400">Final</option>
                             
@@ -60,14 +62,16 @@
                     </div>
                 </div>
 
-                <div class="option">
-                    <div class="option__btn-animation">Animation</div>
+                <div class="special-options">
+                    <div class="special-options__btn weight-500" id="danceButton">Dance!</div>
+                    <div class="special-options__btn weight-500" id="deleteAllButton">eliminar todo</div>
+                    
                 </div>
 
                 <div class="option">
                     <div class="option-header">
                             <img src="../img/buttonAdd.svg" alt="add" class="option-header__icon">
-                            <select name="comboBox" id="add-comboBox" class="comboBox">
+                            <select name="comboBox" id="add-comboBox" class="comboBox weight-500">
                                 <option value="Frente" class="comboBox__option">Frente</option>
                                 <option value="Final" class="comboBox__option">Final</option>
                                 
@@ -76,7 +80,7 @@
                     <div class="option-body">
                         <input id="add-input" type="number" class="option-body__input">
                         
-                        <button id="add-button" class="option-body__button weight-500">Añadir</button>
+                        <div id="add-button" class="option-body__button weight-500">Añadir</div>
                     </div>
 
                     
@@ -95,7 +99,9 @@
         </footer>
     </div>
 
-    <script src="../js/main2.js"></script>
+    <script src="../js/main3.js"></script>
+    <!-- <script src="../js/testes.js"></script> -->
+    
     
 </body>
 </html>
