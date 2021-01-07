@@ -47,7 +47,6 @@ body{
 /* No recomendable, pero funciona xd */
 *{
     transition: background 1.3s ease;
-    transition: box-shadow 1.3s ease;
 }
 
 /* CONTAINER --------------------------- */
@@ -645,9 +644,20 @@ LETRETOS
 *
 */
 
-@media screen and ( max-width:630px ){
+@media screen and ( max-width:700px ){
     html{
-        font-size: 10px;
+        font-size: 14px;
+    }
+
+    .container{
+        height: auto;
+        
+    }
+
+    .options{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }
 
@@ -659,12 +669,12 @@ LETRETOS
     .header__tittle{
         font-size: 1.9rem;
     }
-
-    .options{
+    options{
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
+    
 
     .option{
         margin: 15px 0;
