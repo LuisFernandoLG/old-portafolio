@@ -29,6 +29,10 @@ addButton.addEventListener("click", ()=>{
 
 });
 
+addInput.addEventListener("keydown", (key)=>{
+    if ( key.key === "Enter" ) insertNode();
+});
+
 deleteButton.addEventListener("click", ()=>{
     deleteNode();
 });
@@ -111,7 +115,7 @@ async function cleanList(){
     
     try {
 
-        await isEmpty("There's nothing to remove")
+        await isEmpty("There's nothing to remove");
 
         size = getSize();   
         for ( let i = 0; i < size ; i++ ){
@@ -207,7 +211,7 @@ function createArrow(){
 
 
 function startNodeAnimation(node){
-    speed = "cubic-bezier(0.175, 0.885, 0.32, 1.275)"
+    speed = "cubic-bezier(0.175, 0.885, 0.32, 1.275)";
     node.style.animation = `addNodeAnimation 1.5s ${speed}  alternate`;
 
 }
@@ -222,7 +226,7 @@ function startArrowAnimation(arrow){
 function startDeleteNodeAnimation(node, arrow){
     return new Promise((resolve)=>{
         node.style.animation = "DeleteNodeAnimation .8s ease";
-        arrow.style.animation = "DeleteArrowAnimation .8s ease"
+        arrow.style.animation = "DeleteArrowAnimation .8s ease";
 
         setTimeout(()=>{
             resolve("Animation done!");
@@ -234,7 +238,7 @@ function startDeleteNodeAnimation(node, arrow){
 
 function startDeleteArrowAnimation(arrow){
     return new Promise((resolve)=>{
-        arrow.style.animation = "DeleteNodeAnimation .8s ease"
+        arrow.style.animation = "DeleteNodeAnimation .8s ease";
 
         setTimeout(()=>{
             resolve("Animation done!");
@@ -250,7 +254,7 @@ function startDanceNodeAnimation(node){
             node.style.animation = "danceNodeAnimation 1s ease alternate infinite";
         setTimeout(()=>{
             node.style.animation = null;
-            resolve("Ok!")
+            resolve("Ok!");
 
         }, 1000);
 
@@ -284,7 +288,7 @@ function showMessageError(message){
     messageContainer.innerHTML = `<p class="error-message">
     <i class="fas fa-exclamation-circle"></i>
         ${message}
-    </p>`
+    </p>`;
 }
 
 function cleanMessage(){
@@ -298,17 +302,13 @@ function getSize(){
 function isEmpty( message ){
     return new Promise ((resolve, reject)=>{
         if ( getSize() !== 0 ) resolve("Ok!");
-        else reject(message)
+        else reject(message);
     });
 }
 
 function changeThemeComboBox(){
     let rootStyles = document.documentElement;
     const theme = ThemeComboBox.value;
-
-    console.log(theme)
-
-    console.log( theme === "Scarlett Theme" );
 
     switch(theme){
         case "Scartlett Theme":
@@ -318,8 +318,6 @@ function changeThemeComboBox(){
             rootStyles.style.setProperty("--colorTwo", "#272727");
             rootStyles.style.setProperty("--colorThree", "#ffa62b");
 
-            console.log(theme)
-            
         break;
 
         case "Dark Theme":
@@ -328,8 +326,7 @@ function changeThemeComboBox(){
             rootStyles.style.setProperty("--colorOne", "rgb(166, 211, 226)");
             rootStyles.style.setProperty("--colorTwo", "#ffd369");
             rootStyles.style.setProperty("--colorThree", "#393e46");
-            
-            console.log(theme)
+       
         break;
 
     }
