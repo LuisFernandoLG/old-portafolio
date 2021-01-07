@@ -11,7 +11,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/style_main.css">
-    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/aside.css">
 
     <!-- ICONS -->
     <script src="https://kit.fontawesome.com/e2bb560564.js" crossorigin="anonymous"></script>
@@ -24,6 +24,11 @@
     <div class="container">
 
         <header class="header">
+
+            <div class="header-open">
+                <i class="fas fa-bars header-open__btn" id="open-settings"></i>
+            </div>
+
             <h1 class="header__tittle weight-800">Linked <span class="header__tittle-bold">Simple</span> List</h1>
 
             <div class="themes-container">
@@ -34,6 +39,45 @@
                 </select>
             </div>
         </header>
+
+        <aside class="settings">
+            <div class="settings-close">
+                <i class="fas fa-times-circle settings-close__btn" id="close-settings"></i>
+
+            </div>
+
+            <h2 class="settings__tittle weight-700">Settings</h2>
+
+            <div class="settings-option">
+                <label for="settings-option1" class="settings-option__label">Add animation speed</label>
+                <input name="settings-option1" class="settings-option__input" type="number">
+            </div>
+
+            <div class="settings-option">
+                <label for="settings-option2" class="settings-option__label">Remove animation speed</label>
+                <input name="settings-option2" class="settings-option__input" type="number">
+            </div>
+
+            <div class="settings-option">
+                <label for="settings-option3" class="settings-option__label">Delete all animation speed</label>
+                <input name="settings-option3" class="settings-option__input" type="number">
+            </div>
+
+            <div class="settings-option">
+                <label for="settings-option4" class="settings-option__label">Dance animation speed</label>
+                <input name="settings-option4" class="settings-option__input" type="number">
+            </div>
+
+            <p id="settings-message" class="setting__message">
+
+            </p>
+
+            <div id="settings-saved-button" class="settings__btn weight-500">
+                Saved
+            </div>
+    
+
+        </aside>
 
         <main class="main">
                 
@@ -92,9 +136,9 @@
                         
                         <a id="add-button" class="option-body__button weight-500">Add</a>
                     </div>
-
-                    
                 </div>
+
+
             </div>
 
         </main>

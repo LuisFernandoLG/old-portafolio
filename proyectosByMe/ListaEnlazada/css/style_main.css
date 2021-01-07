@@ -71,9 +71,24 @@ body{
     width: 100%;
 
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 
+    
+
+
+
+}
+
+.header-open{
+}
+
+.header-open__btn{
+    font-size: 40px;
+    color: var(--colorTwo);
+}
+.header-open__btn:active{
+    animation: click .5s ease alternate;
 }
 
 .header__tittle{
@@ -584,6 +599,28 @@ body{
     }
 }
 
+@keyframes openSettingsAnimation{
+    0%{
+        transform: translateX(-20vw);
+    }
+
+    100%{
+        
+    }
+}
+
+@keyframes closeSettingsAnimation{
+    0%{
+    }
+    
+    100%{
+        transform: translateX(-20vw);
+        
+    }
+}
+
+
+
 
 /**
 
@@ -659,6 +696,21 @@ LETRETOS
         justify-content: center;
         align-items: center;
     }
+    
+    .special-options{
+        order: -10;
+        margin: 10px 0;
+    }    
+
+    .option{
+        margin: 20px 0;
+        width: 20rem;
+    }
+
+    .special-options__btn{
+        margin: 10px 0;
+    }
+
 }
 
 @media screen and ( max-width:400px ){
@@ -669,25 +721,99 @@ LETRETOS
     .header__tittle{
         font-size: 1.9rem;
     }
-    options{
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
     
 
-    .option{
-        margin: 15px 0;
-        width: 20rem;
-    }
-
-    .special-options__btn{
-        margin: 5px 0;
-
-    }
-
-    .special-options{
-        order: -10;
-    }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+/*
+*
+* ASIDE -----------------------------------------------------------------------------------
+*
+*/
+
+.opacity{
+    filter: blur(2px);
+}
+
+.settings{
+
+    background-color: var(--colorThree);
+
+    width: 20vw;
+    height: 100vh;
+
+    position: absolute;
+    z-index: 100;
+    left: 0;
+
+    display: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    box-shadow: 4px 0px 30px var(--primary-color);
+
+    animation: close;
+
+}
+
+.settings-close{
+    width: 80%;
+}
+
+.settings-close__btn{
+    font-size: 50px;
+    color: var(--colorTwo);
+}
+
+.settings-close__btn:active{
+    animation: click 5s ease alternate;
+}
+
+.settings__tittle{
+
+    font-size: 45px;
+    color: var(--colorTwo);
+    text-align: center;
+}
+
+.settings-option{
+    padding: 10px 15px;
+}
+
+.settings-option__label{
+    font-size: 18px;
+    color: var(--secundary-color);
+}
+
+.settings-option__input{
+    margin-top: 10px;
+    border: none;
+    width: 90%;
+    padding: 8px;
+}
+
+
+.settings__btn{
+    background: var(--secundary-color);
+    padding: 15px 20px;
+    font-size: 20px;
+
+    border-radius: var(--border-radius-options);
+}
+
+.settings__btn:active{
+    animation: click 5s ease alternate;
+
+}

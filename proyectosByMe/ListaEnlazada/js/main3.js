@@ -1,8 +1,17 @@
+//Conainer
+let header = document.querySelector(".header")
+let main = document.querySelector(".main");
+let footer = document.querySelector(".footer")
+
+
 //Buttons
 const addButton = document.getElementById("add-button");
 const deleteButton = document.getElementById("delete-button");
 const deleteAllButton = document.getElementById("deleteAllButton");
 const danceButton = document.getElementById("danceButton");
+
+const openSettingsButton = document.getElementById("open-settings");
+const closeSettingsButton = document.getElementById("close-settings");
 
 //Combo Box
 const addComboBox = document.getElementById("add-comboBox");
@@ -18,8 +27,8 @@ let list = document.getElementById("list");
 //Messages
 let messageContainer = document.getElementById("message");
 
-
-
+//Aside
+let settingsBar = document.querySelector(".settings");
 
 
 
@@ -48,7 +57,15 @@ danceButton.addEventListener("click", ()=>{
 
 ThemeComboBox.addEventListener("change", ()=>{
     changeThemeComboBox();
-})
+});
+
+openSettingsButton.addEventListener("click", ()=>{
+    openSettings();
+});
+
+closeSettingsButton.addEventListener("click", ()=>{
+    closeSettings();
+});
 
 
 
@@ -332,6 +349,41 @@ function changeThemeComboBox(){
     }
 
 
+}
+
+
+
+
+function openSettings(){
+    settingsBar.style.display = "flex";
+    settingsBar.style.animation = "openSettingsAnimation .5s ease alternate"
+
+    header.classList.toggle("opacity");
+    main.classList.toggle("opacity");
+    footer.classList.toggle("opacity");
+    
+}
+
+async function closeSettings(){
+
+    await startCloseSettingsAnimation();
+
+    header.classList.toggle("opacity");
+    main.classList.toggle("opacity");
+    footer.classList.toggle("opacity");
+}
+
+function startCloseSettingsAnimation(){
+    return new Promise( (resolve)=>{
+        settingsBar.style.animation = "closeSettingsAnimation .5s ease alternate"
+
+        setTimeout( ()=>{
+            resolve("Ok!");
+            settingsBar.style.display = "none";
+        }, 500 );
+
+
+    } );
 }
 
 
