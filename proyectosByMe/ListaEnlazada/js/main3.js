@@ -8,7 +8,9 @@ let footer = document.querySelector(".footer")
 const addButton = document.getElementById("add-button");
 const deleteButton = document.getElementById("delete-button");
 const deleteAllButton = document.getElementById("deleteAllButton");
-const danceButton = document.getElementById("danceButton");
+const iterationButton = document.getElementById("iterationButton");
+const setButton = document.getElementById("set-button");
+const settingsSavedButton = document.getElementById("settings-saved-button");
 
 const openSettingsButton = document.getElementById("open-settings");
 const closeSettingsButton = document.getElementById("close-settings");
@@ -20,17 +22,33 @@ const ThemeComboBox = document.getElementById("themes-comboBox");
 
 //Inputs
 const addInput = document.getElementById("add-input");
+const setInputIndex = document.getElementById("set-input-index");
+const setInput = document.getElementById("set-input");
+
+const addInputSpeed = document.getElementById("input-add-speed");
+const removeInputSpeed = document.getElementById("input-remove-speed");
+const iterationInputSpeed = document.getElementById("input-iteration-speed");
+
 
 //list
 let list = document.getElementById("list");
 
 //Messages
 let messageContainer = document.getElementById("message");
+let settingsMessageContainer = document.getElementById("settings-message");
 
 //Aside
 let settingsBar = document.querySelector(".settings");
 
 
+// Animation speed
+let addAnimationSpeed = 1000;
+let removeAnimationSpeed = 500;
+let iterationAnimationSpeed = 900;
+
+addInputSpeed.value = addAnimationSpeed;
+removeInputSpeed.value = removeAnimationSpeed;
+iterationInputSpeed.value = iterationAnimationSpeed;
 
 //Events
 addButton.addEventListener("click", ()=>{
@@ -50,9 +68,9 @@ deleteAllButton.addEventListener("click", ()=>{
     cleanList();
 });
 
-danceButton.addEventListener("click", ()=>{
+iterationButton.addEventListener("click", ()=>{
     console.log("Click")
-    danceList();
+    iterationList();
 });
 
 ThemeComboBox.addEventListener("change", ()=>{
@@ -67,14 +85,22 @@ closeSettingsButton.addEventListener("click", ()=>{
     closeSettings();
 });
 
+setButton.addEventListener("click", ()=>{
+    setData();
+});
+
+settingsSavedButton.addEventListener("click", ()=>{
+    changeConfiguration();
+})
+
 
 
 async function insertNode(){
     cleanMessage();
     try {
-        await validateAddInput();
+        let value = await validateInput(addInput.value);
 
-        let objectNode = createNode( addInput.value );
+        let objectNode = createNode( value );
         let objectArrow = createArrow();
 
         if ( addComboBox.value === "Front" ){
@@ -85,8 +111,6 @@ async function insertNode(){
             list.prepend( objectArrow.arrowFragment );
             list.prepend( objectNode.nodeFragment );
         }
-
-        
 
         startNodeAnimation( objectNode.node );
         startArrowAnimation( objectArrow.arrow );
@@ -129,14 +153,10 @@ async function deleteNode(){
 }
 
 async function cleanList(){
-    
     try {
-
         await isEmpty("There's nothing to remove");
-
         size = getSize();   
         for ( let i = 0; i < size ; i++ ){
-            
             let node;
             let arrow;
             
@@ -156,14 +176,10 @@ async function cleanList(){
 }
 
 
-async function danceList(){
-
+async function iterationList(){
     try{
-
-        await isEmpty("There's not nodes to dance!");
-
+        await isEmpty("There's not nodes to iteration!");
         size = getSize();
-    
         for ( let i = 0; i < size; i++ ){
             let node;
             let arrow;
@@ -171,17 +187,78 @@ async function danceList(){
             node = document.getElementsByClassName("node")[i];
             arrow = document.getElementsByClassName("arrow")[i];
             
-    
-            await startDanceNodeAnimation(node);
-            await startDanceArrowAnimation(arrow);
+            await startiterationNodeAnimation(node);
+            await startiterationArrowAnimation(arrow);
             
         }
-
+        
     }
     catch(error){
         showMessageError(error);
     }
 }
+
+
+function openSettings(){
+    settingsBar.style.display = "flex";
+    settingsBar.style.animation = "openSettingsAnimation .5s ease alternate"
+    
+    header.classList.toggle("opacity");
+    main.classList.toggle("opacity");
+    footer.classList.toggle("opacity");
+    
+}
+
+async function closeSettings(){
+
+    await startCloseSettingsAnimation();
+    
+    header.classList.toggle("opacity");
+    main.classList.toggle("opacity");
+    footer.classList.toggle("opacity");
+}
+
+async function setData(){
+
+    try {
+        cleanMessage()
+        await isEmpty("There's not nodes");
+        
+        let size = getSize() - 1;
+        let to = parseInt(setInputIndex.value);
+        const newValue = setInput.value;
+
+        if ( to > size ) return showMessageError("Invalid Index");
+        
+        let node;
+        let arrow;
+
+        for ( let i = 0; i <= to ; i++ ){
+
+            node = document.getElementsByClassName("node")[i];
+            arrow = document.getElementsByClassName("arrow")[i];
+
+        
+            await startiterationNodeAnimation(node);
+
+            //Para que la última flecha no se mueva c:
+            if ( i !== to) await startiterationArrowAnimation(arrow);
+
+        }
+        
+        value = node.children[0];
+        value.textContent = newValue;
+        changeNodeValueAnimation(value);
+        
+    } catch (error) {
+        showMessageError( error );
+    }
+
+
+}
+
+
+
 
 /**
  * 
@@ -189,24 +266,25 @@ async function danceList(){
  * 
  */
 
-function createNode(valueToAdd){
 
+function createNode(valueToAdd){
+    
     //El uso de un fragment mejora el rendimiento
     let nodeFragment = document.createDocumentFragment();
     let content = document.createElement("P")
     let value = document.createTextNode(valueToAdd);
     let node = document.createElement("DIV");
-
+    
     node.classList.add("node");
     content.classList.add("node__value", "weight-500");
-
+    
     content.appendChild(value);
     node.appendChild(content);
     nodeFragment.appendChild(node);
-
+    
     //retorna un diccionario
-
-
+    
+    
     return { node: node, nodeFragment: nodeFragment };
 }
 
@@ -229,77 +307,76 @@ function createArrow(){
 
 function startNodeAnimation(node){
     speed = "cubic-bezier(0.175, 0.885, 0.32, 1.275)";
-    node.style.animation = `addNodeAnimation 1.5s ${speed}  alternate`;
+    node.style.animation = `addNodeAnimation ${addAnimationSpeed / 1000}s ${speed}  alternate`;
 
 }
 
 function startArrowAnimation(arrow){
-    arrow.style.animation = "addArrowAnimation 1s ease alternate";
+    arrow.style.animation = `addArrowAnimation ${addAnimationSpeed / 1000}s ease alternate`;
 
 }
 
-
-
 function startDeleteNodeAnimation(node, arrow){
     return new Promise((resolve)=>{
-        node.style.animation = "DeleteNodeAnimation .8s ease";
-        arrow.style.animation = "DeleteArrowAnimation .8s ease";
+        node.style.animation = `DeleteNodeAnimation ${removeAnimationSpeed / 1000}s ease`;
+        arrow.style.animation = `DeleteArrowAnimation ${removeAnimationSpeed / 1000}s ease`;
 
         setTimeout(()=>{
             resolve("Animation done!");
             node.style.animation = null;
-        }, 800);
+        }, removeAnimationSpeed);
 
     });
 }
 
+
+
 function startDeleteArrowAnimation(arrow){
     return new Promise((resolve)=>{
-        arrow.style.animation = "DeleteNodeAnimation .8s ease";
+        arrow.style.animation = `DeleteNodeAnimation ${deleteAllAnimationSpeed / 1000}s ease`;
 
         setTimeout(()=>{
             resolve("Animation done!");
             arrow.style.animation = null;
-        }, 800);
+        }, deleteAllAnimationSpeed);
 
     });
     
 }
 
-function startDanceNodeAnimation(node){
+function startiterationNodeAnimation(node){
     return new Promise( (resolve)=>{
-            node.style.animation = "danceNodeAnimation 1s ease alternate infinite";
+            node.style.animation = `iterationNodeAnimation ${iterationAnimationSpeed / 1000}s ease alternate infinite`;
         setTimeout(()=>{
             node.style.animation = null;
             resolve("Ok!");
 
-        }, 1000);
+        }, iterationAnimationSpeed);
 
     });
 }
 
-function startDanceArrowAnimation(arrow){
+function startiterationArrowAnimation(arrow){
     return new Promise( (resolve)=>{
-        arrow.style.animation = "shakeArrow 1s ease alternate infinite";
+        arrow.style.animation = `shakeArrow ${iterationAnimationSpeed / 1000}s ease alternate infinite`;
         setTimeout(()=>{
             arrow.style.animation = null;
             resolve("Ok!")
 
-        }, 1000);
+        }, iterationAnimationSpeed);
 
     });
 }
 
-
-function validateAddInput(){
+function validateInput( value ){
     return new Promise( (resolve, reject)=>{
-        if ( addInput.value !== "" ) resolve("Ok!");
+        let onlyNumbersExpression = /^\-*\d+$/
+        if ( onlyNumbersExpression.test( value ) ) resolve(value);
         else reject("Invalid input");
 
     } );
 
 }
-
 
 function showMessageError(message){
     messageContainer.innerHTML = `<p class="error-message">
@@ -311,6 +388,12 @@ function showMessageError(message){
 function cleanMessage(){
     messageContainer.innerHTML = null;
 }
+
+function cleanSettingMessage(){
+    settingsMessageContainer.innerHTML = null;
+}
+
+
 
 function getSize(){
     return document.getElementsByClassName("node").length;
@@ -351,28 +434,6 @@ function changeThemeComboBox(){
 
 }
 
-
-
-
-function openSettings(){
-    settingsBar.style.display = "flex";
-    settingsBar.style.animation = "openSettingsAnimation .5s ease alternate"
-
-    header.classList.toggle("opacity");
-    main.classList.toggle("opacity");
-    footer.classList.toggle("opacity");
-    
-}
-
-async function closeSettings(){
-
-    await startCloseSettingsAnimation();
-
-    header.classList.toggle("opacity");
-    main.classList.toggle("opacity");
-    footer.classList.toggle("opacity");
-}
-
 function startCloseSettingsAnimation(){
     return new Promise( (resolve)=>{
         settingsBar.style.animation = "closeSettingsAnimation .5s ease alternate"
@@ -386,4 +447,50 @@ function startCloseSettingsAnimation(){
     } );
 }
 
+function changeNodeValueAnimation(value){
+
+    value.style.animation = "startChangeNodeValue .7s ease alternate"
+    return new Promise( resolve=>{
+
+        setTimeout( ()=>{
+            value.style.animation = null;
+            resolve("Setted!")
+        }, 700 );
+
+    } );
+}
+
+
+
+/**
+ * 
+ * Animations speed events
+ * 
+ */
+
+
+
+async function changeConfiguration(){
+
+    try {
+        addAnimationSpeed = await validateInput(addInputSpeed.value);
+        removeAnimationSpeed = await validateInput(removeInputSpeed.value);
+        iterationAnimationSpeed = await validateInput(iterationInputSpeed.value);        
+        showMessageInConfiguration("Saved!");
+    
+    } catch (error) {
+        showMessageInConfiguration(error);
+    }
+        
+
+
+}
+
+function showMessageInConfiguration( message ){
+    cleanSettingMessage()
+    settingsMessageContainer.innerHTML = `<p class="settings-message">
+    <i class="fas fa-exclamation-circle"></i>
+        ${message}
+    </p>`;
+}
 

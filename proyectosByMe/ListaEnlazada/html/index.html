@@ -50,27 +50,22 @@
 
             <div class="settings-option">
                 <label for="settings-option1" class="settings-option__label">Add animation speed</label>
-                <input name="settings-option1" class="settings-option__input" type="number">
+                <input name="settings-option1" placeholder="milliseconds" id="input-add-speed" class="settings-option__input" type="number">
             </div>
 
             <div class="settings-option">
                 <label for="settings-option2" class="settings-option__label">Remove animation speed</label>
-                <input name="settings-option2" class="settings-option__input" type="number">
+                <input name="settings-option2" placeholder="milliseconds" id="input-remove-speed" class="settings-option__input" type="number">
             </div>
 
             <div class="settings-option">
-                <label for="settings-option3" class="settings-option__label">Delete all animation speed</label>
-                <input name="settings-option3" class="settings-option__input" type="number">
+                <label for="settings-option4" class="settings-option__label">Iteration animation speed</label>
+                <input name="settings-option4" placeholder="milliseconds" id="input-iteration-speed" class="settings-option__input" type="number">
             </div>
 
-            <div class="settings-option">
-                <label for="settings-option4" class="settings-option__label">Dance animation speed</label>
-                <input name="settings-option4" class="settings-option__input" type="number">
+            <div id="settings-message" class="settings-message">
+
             </div>
-
-            <p id="settings-message" class="setting__message">
-
-            </p>
 
             <div id="settings-saved-button" class="settings__btn weight-500">
                 Saved
@@ -83,9 +78,7 @@
                 
                 <div id="list" class="list">
                     <div class="node">
-                        <p class="node__value weight-500">
-                            1
-                        </p>
+                        <p class="node__value weight-500">1</p>
                     </div>
                     <div class="arrow">
                         <i class="fas fa-long-arrow-alt-right arrow__i"></i>
@@ -117,7 +110,7 @@
                 </div>
                 
                 <div class="special-options">
-                    <div class="special-options__btn weight-500" id="danceButton">Dance!</div>
+                    <div class="special-options__btn weight-500" id="iterationButton">iteration!</div>
                     <div class="special-options__btn weight-500" id="deleteAllButton">Delete all</div>
                     
                 </div>
@@ -132,11 +125,31 @@
                             </select>
                     </div>
                     <div class="option-body">
-                        <input placeholder="Número..." id="add-input" type="number" class="option-body__input">
+                        <input placeholder="Number" id="add-input" type="number" class="option-body__input">
                         
                         <a id="add-button" class="option-body__button weight-500">Add</a>
                     </div>
                 </div>
+                
+                <div class="option option-set">
+                    <div class="option-header">
+                        <i class="fas fa-arrow-alt-circle-right option-header__icon"></i>
+                        <h1 class="option-header__tittle">
+                            Set
+                        </h1>
+                    </div>
+
+                    <div class="option-body">
+
+                        <input placeholder="Index" id="set-input-index" type="number" class="option-body__input">
+
+                        <input placeholder="Number" id="set-input" type="number" class="option-body__input">
+                        
+                        <a id="set-button" class="option-body__button weight-500">Set</a>
+                    </div>
+                </div>
+                
+
 
 
             </div>
