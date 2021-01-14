@@ -470,6 +470,14 @@ function disableAllButtons(){
   
   deleteAllButton.setAttribute("disabled", "");
   deleteAllButton.classList.add("disable-btn");
+
+  addButton.setAttribute("disabled", "");
+  addButton.classList.add("disable-btn");
+
+  deleteButton.setAttribute("disabled", "");
+  deleteButton.classList.add("disable-btn");
+
+  
   
 }
 
@@ -480,8 +488,11 @@ function enableAllButtons(){
   iterationButton.removeAttribute("disabled", "");
   iterationButton.classList.remove("disable-btn");
   
-  deleteAllButton.removeAttribute("disabled", "");
-  deleteAllButton.classList.remove("disable-btn");
+  addButton.removeAttribute("disabled", "");
+  addButton.classList.remove("disable-btn");
+  
+  deleteButton.removeAttribute("disabled", "");
+  deleteButton.classList.remove("disable-btn");
   
   
   
