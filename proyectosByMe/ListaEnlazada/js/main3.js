@@ -491,6 +491,9 @@ function enableAllButtons(){
   addButton.removeAttribute("disabled", "");
   addButton.classList.remove("disable-btn");
   
+  deleteAllButton.removeAttribute("disabled", "");
+  deleteAllButton.classList.remove("disable-btn");
+  
   deleteButton.removeAttribute("disabled", "");
   deleteButton.classList.remove("disable-btn");
   
