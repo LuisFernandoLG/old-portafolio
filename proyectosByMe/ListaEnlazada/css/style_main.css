@@ -880,3 +880,15 @@ LETRETOS
     animation : startMessageAnimation .5s ease alternate;
 
 }
+
+
+/*
+
+DISABLE BTN
+
+*/
+
+.disable-btn{
+    background: #e2e4e5;
+    color: #393e46;
+}

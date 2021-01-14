@@ -51,181 +51,199 @@ iterationInputSpeed.value = iterationAnimationSpeed;
 
 //Events
 addButton.addEventListener("click", () => {
-  insertNode();
+    insertNode();
 });
 
 addInput.addEventListener("keydown", (key) => {
-  if (key.key === "Enter") insertNode();
+    if (key.key === "Enter") insertNode();
 });
 
 deleteButton.addEventListener("click", () => {
-  deleteNode();
+    deleteNode();
 });
 
 deleteAllButton.addEventListener("click", () => {
-  cleanList();
+    cleanList();
 });
 
 iterationButton.addEventListener("click", () => {
-  console.log("Click");
-  iterationList();
+    iterationList();
 });
 
 ThemeComboBox.addEventListener("change", () => {
-  changeThemeComboBox();
+    changeThemeComboBox();
 });
 
 openSettingsButton.addEventListener("click", () => {
-  openSettings();
+    openSettings();
 });
 
 closeSettingsButton.addEventListener("click", () => {
-  closeSettings();
+    closeSettings();
 });
 
 setButton.addEventListener("click", () => {
-  setData();
+    setData();
 });
 
 settingsSavedButton.addEventListener("click", () => {
-  changeConfiguration();
+    changeConfiguration();
 });
 
 async function insertNode() {
-  cleanMessage();
-  try {
-    let value = await isNumber(addInput.value);
+    cleanMessage();
+    try {
+        let value = await isNumber(addInput.value);
 
-    let objectNode = createNode(value);
-    let objectArrow = createArrow();
+        let objectNode = createNode(value);
+        let objectArrow = createArrow();
 
-    if (addComboBox.value === "Front") {
-      list.appendChild(objectNode.nodeFragment);
-      list.appendChild(objectArrow.arrowFragment);
-    } else {
-      list.prepend(objectArrow.arrowFragment);
-      list.prepend(objectNode.nodeFragment);
+        if (addComboBox.value === "Front") {
+            list.appendChild(objectNode.nodeFragment);
+            list.appendChild(objectArrow.arrowFragment);
+        } else {
+            list.prepend(objectArrow.arrowFragment);
+            list.prepend(objectNode.nodeFragment);
+        }
+
+        startNodeAnimation(objectNode.node);
+        startArrowAnimation(objectArrow.arrow);
+    } catch (error) {
+        showMessageError(error);
     }
-
-    startNodeAnimation(objectNode.node);
-    startArrowAnimation(objectArrow.arrow);
-  } catch (error) {
-    showMessageError(error);
-  }
 }
 
 async function deleteNode() {
-  cleanMessage();
-  try {
-    await isEmpty("There's not nodes to remove");
+    cleanMessage();
+    try {
+        await isEmpty("There's not nodes to remove");
 
-    let node;
-    let arrow;
+        let node;
+        let arrow;
 
-    let allNodes = document.getElementsByClassName("node");
+        let allNodes = document.getElementsByClassName("node");
 
-    if (deleteComboBox.value === "Back") {
-      node = document.getElementsByClassName("node")[0];
-      arrow = document.getElementsByClassName("arrow")[0];
-    } else {
-      node = document.getElementsByClassName("node")[allNodes.length - 1];
-      arrow = document.getElementsByClassName("arrow")[allNodes.length - 1];
+        if (deleteComboBox.value === "Back") {
+            node = document.getElementsByClassName("node")[0];
+            arrow = document.getElementsByClassName("arrow")[0];
+        } else {
+            node = document.getElementsByClassName("node")[allNodes.length - 1];
+            arrow = document.getElementsByClassName("arrow")[allNodes.length - 1];
+        }
+
+        await startDeleteNodeAnimation(node, arrow);
+        node.remove();
+        arrow.remove();
+    } catch (error) {
+        showMessageError(error);
     }
-
-    await startDeleteNodeAnimation(node, arrow);
-    node.remove();
-    arrow.remove();
-  } catch (error) {
-    showMessageError(error);
-  }
 }
 
 async function cleanList() {
-  try {
-    await isEmpty("There's nothing to remove");
-    size = getSize();
-    for (let i = 0; i < size; i++) {
-      let node;
-      let arrow;
+    try {
+        await isEmpty("There's nothing to remove");
+        let size = getSize();
 
-      node = document.getElementsByClassName("node")[0];
-      arrow = document.getElementsByClassName("arrow")[0];
+        disableAllButtons();
 
-      await startDeleteNodeAnimation(node, arrow);
-      node.remove();
-      arrow.remove();
+        for (let i = 0; i < size; i++) {
+            let node;
+            let arrow;
+
+            node = document.getElementsByClassName("node")[0];
+            arrow = document.getElementsByClassName("arrow")[0];
+
+            await startDeleteNodeAnimation(node, arrow);
+            node.remove();
+            arrow.remove();
+        }
+    } catch (error) {
+        showMessageError(error);
+    }finally{
+      enableAllButtons();
     }
-  } catch (error) {
-    showMessageError(error);
-  }
 }
 
 async function iterationList() {
-  try {
-    await isEmpty("There's not nodes to iteration!");
-    size = getSize();
-    for (let i = 0; i < size; i++) {
-      let node;
-      let arrow;
+    try {
+        await isEmpty("There's not nodes to iteration!");
+        let size = getSize();
 
-      node = document.getElementsByClassName("node")[i];
-      arrow = document.getElementsByClassName("arrow")[i];
+        disableAllButtons();
 
-      await startiterationNodeAnimation(node);
-      await startIterationArrowAnimation(arrow);
+        for (let i = 0; i < size; i++) {
+            let node;
+            let arrow;
+
+            node = document.getElementsByClassName("node")[i];
+            arrow = document.getElementsByClassName("arrow")[i];
+
+            await startiterationNodeAnimation(node);
+            await startIterationArrowAnimation(arrow);
+        }
+    } catch (error) {
+        showMessageError(error);
     }
-  } catch (error) {
-    showMessageError(error);
-  }
+    finally{
+      enableAllButtons();
+    }
 }
 
 function openSettings() {
-  settingsBar.style.display = "flex";
-  settingsBar.style.animation = "openSettingsAnimation .5s ease alternate";
+    settingsBar.style.display = "flex";
+    settingsBar.style.animation = "openSettingsAnimation .5s ease alternate";
 
-  header.classList.toggle("opacity");
-  main.classList.toggle("opacity");
-  footer.classList.toggle("opacity");
+    header.classList.toggle("opacity");
+    main.classList.toggle("opacity");
+    footer.classList.toggle("opacity");
 }
 
 async function closeSettings() {
-  await startCloseSettingsAnimation();
+    await startCloseSettingsAnimation();
 
-  header.classList.toggle("opacity");
-  main.classList.toggle("opacity");
-  footer.classList.toggle("opacity");
+    header.classList.toggle("opacity");
+    main.classList.toggle("opacity");
+    footer.classList.toggle("opacity");
 }
 
 async function setData() {
-  try {
-    cleanMessage();
-    await isEmpty("There's not nodes");
+    try {
+        cleanMessage();
+        await isEmpty("There's not nodes");
+        let size = getSize() - 1;
+        let to = await isOnlyPositiveNumbers(setInputIndex.value);
+        const newValue = await isNumber(setInput.value);
 
-    let size = getSize() - 1;
-    let to = await isOnlyPositiveNumbers(setInputIndex.value);
-    const newValue = isNumber(setInput.value);
+        if (to > size) return showMessageError("Invalid Index");
 
-    if (to > size) return showMessageError("Invalid Index");
+        ///DISABLE BTN
+        disableAllButtons();
 
-    let node;
-    let arrow;
+        let value;
+        let node;
+        let arrow;
 
-    for (let i = 0; i <= to; i++) {
-      node = document.getElementsByClassName("node")[i];
-      arrow = document.getElementsByClassName("arrow")[i];
+        for (let i = 0; i <= to; i++) {
+            node = document.getElementsByClassName("node")[i];
+            arrow = document.getElementsByClassName("arrow")[i];
 
-      await startiterationNodeAnimation(node);
+            await startiterationNodeAnimation(node);
 
-      //Para que la última flecha no se mueva c:
-      if (i !== to) await startIterationArrowAnimation(arrow);
+            //Para que la última flecha no se mueva c:
+            if (i !== to) await startIterationArrowAnimation(arrow);
+        }
+
+        console.log(node.children[0]);
+        value = node.children[0];
+        value.textContent = newValue;
+
+        await changeNodeValueAnimation(value);
+    } catch (error) {
+        showMessageError(error);
+    } finally {
+        //Enable btn
+        enableAllButtons();
     }
-
-    value = node.children[0];
-    value.textContent = newValue;
-    changeNodeValueAnimation(value);
-  } catch (error) {
-    showMessageError(error);
-  }
 }
 
 /**
@@ -235,175 +253,171 @@ async function setData() {
  */
 
 function createNode(valueToAdd) {
-  //El uso de un fragment mejora el rendimiento
-  let nodeFragment = document.createDocumentFragment();
-  let content = document.createElement("P");
-  let value = document.createTextNode(valueToAdd);
-  let node = document.createElement("DIV");
+    //El uso de un fragment mejora el rendimiento
+    let nodeFragment = document.createDocumentFragment();
+    let content = document.createElement("P");
+    let value = document.createTextNode(valueToAdd);
+    let node = document.createElement("DIV");
 
-  node.classList.add("node");
-  content.classList.add("node__value", "weight-500");
+    node.classList.add("node");
+    content.classList.add("node__value", "weight-500");
 
-  content.appendChild(value);
-  node.appendChild(content);
-  nodeFragment.appendChild(node);
+    content.appendChild(value);
+    node.appendChild(content);
+    nodeFragment.appendChild(node);
 
-  //retorna un diccionario
+    //retorna un diccionario
 
-  return { node: node, nodeFragment: nodeFragment };
+    return { node: node, nodeFragment: nodeFragment };
 }
 
 function createArrow() {
-  let arrowFragment = document.createDocumentFragment();
-  let arrowI = document.createElement("I");
-  let arrowContainer = document.createElement("DIV");
+    let arrowFragment = document.createDocumentFragment();
+    let arrowI = document.createElement("I");
+    let arrowContainer = document.createElement("DIV");
 
-  arrowI.classList.add("arrow__i", "fas", "fa-long-arrow-alt-right");
-  arrowContainer.classList.add("arrow");
+    arrowI.classList.add("arrow__i", "fas", "fa-long-arrow-alt-right");
+    arrowContainer.classList.add("arrow");
 
-  arrowContainer.appendChild(arrowI);
-  arrowFragment.appendChild(arrowContainer);
+    arrowContainer.appendChild(arrowI);
+    arrowFragment.appendChild(arrowContainer);
 
-  return { arrow: arrowContainer, arrowFragment: arrowFragment };
+    return { arrow: arrowContainer, arrowFragment: arrowFragment };
 }
 
 function startNodeAnimation(node) {
-  node.style.animation = `addNodeAnimation ${
-    addAnimationSpeed / 1000
-  }s alternate`;
+    node.style.animation = `addNodeAnimation ${addAnimationSpeed / 1000}s alternate`;
 }
 
 function startArrowAnimation(arrow) {
-  arrow.style.animation = `addArrowAnimation ${
-    addAnimationSpeed / 1000
-  }s ease alternate`;
+    arrow.style.animation = `addArrowAnimation ${
+        addAnimationSpeed / 1000
+    }s ease alternate`;
 }
 
 function startDeleteNodeAnimation(node, arrow) {
-  return new Promise((resolve) => {
-    node.style.animation = `DeleteNodeAnimation ${
-      removeAnimationSpeed / 1000
-    }s ease`;
-    arrow.style.animation = `DeleteArrowAnimation ${
-      removeAnimationSpeed / 1000
-    }s ease`;
+    return new Promise((resolve) => {
+        node.style.animation = `DeleteNodeAnimation ${removeAnimationSpeed / 1000}s ease`;
+        arrow.style.animation = `DeleteArrowAnimation ${
+            removeAnimationSpeed / 1000
+        }s ease`;
 
-    setTimeout(() => {
-      resolve("Animation done!");
-      node.style.animation = null;
-    }, removeAnimationSpeed);
-  });
+        setTimeout(() => {
+            resolve("Animation done!");
+            node.style.animation = null;
+        }, removeAnimationSpeed);
+    });
 }
 
 function startDeleteArrowAnimation(arrow) {
-  return new Promise((resolve) => {
-    arrow.style.animation = `DeleteNodeAnimation ${
-      deleteAllAnimationSpeed / 1000
-    }s ease`;
+    return new Promise((resolve) => {
+        arrow.style.animation = `DeleteNodeAnimation ${
+            deleteAllAnimationSpeed / 1000
+        }s ease`;
 
-    setTimeout(() => {
-      resolve("Animation done!");
-      arrow.style.animation = null;
-    }, deleteAllAnimationSpeed);
-  });
+        setTimeout(() => {
+            resolve("Animation done!");
+            arrow.style.animation = null;
+        }, deleteAllAnimationSpeed);
+    });
 }
 
 function startiterationNodeAnimation(node) {
-  return new Promise((resolve) => {
-    node.style.animation = null;
-    node.style.animation = `iterationNodeAnimation ${
-      iterationAnimationSpeed / 1000
-    }s ease alternate infinite`;
-    setTimeout(() => {
-      node.style.animation = null;
-      resolve("Ok!");
-    }, iterationAnimationSpeed);
-  });
+    return new Promise((resolve) => {
+        node.style.animation = null;
+        node.style.animation = `iterationNodeAnimation ${
+            iterationAnimationSpeed / 1000
+        }s ease alternate infinite`;
+        setTimeout(() => {
+            node.style.animation = null;
+            resolve("Ok!");
+        }, iterationAnimationSpeed);
+    });
 }
 
 function startIterationArrowAnimation(arrow) {
-  return new Promise((resolve) => {
-    arrow.style.animation = null;
-    arrow.style.animation = `shakeArrow ${
-      iterationAnimationSpeed / 1000
-    }s ease alternate infinite`;
-    setTimeout(() => {
-      arrow.style.animation = null;
-      resolve("Ok!");
-    }, iterationAnimationSpeed);
-  });
+    return new Promise((resolve) => {
+        arrow.style.animation = null;
+        arrow.style.animation = `shakeArrow ${
+            iterationAnimationSpeed / 1000
+        }s ease alternate infinite`;
+        setTimeout(() => {
+            arrow.style.animation = null;
+            resolve("Ok!");
+        }, iterationAnimationSpeed);
+    });
 }
 
 function showMessageError(message) {
-  messageContainer.innerHTML = `<p class="error-message">
+    messageContainer.innerHTML = `<p class="error-message">
     <i class="fas fa-exclamation-circle"></i>
         ${message}
     </p>`;
 }
 
 function cleanMessage() {
-  messageContainer.innerHTML = null;
+    messageContainer.innerHTML = null;
 }
 
 function cleanSettingMessage() {
-  settingsMessageContainer.innerHTML = null;
+    settingsMessageContainer.innerHTML = null;
 }
 
 function getSize() {
-  return document.getElementsByClassName("node").length;
+    return document.getElementsByClassName("node").length;
 }
 
 function isEmpty(message) {
-  return new Promise((resolve, reject) => {
-    if (getSize() !== 0) resolve("Ok!");
-    else reject(message);
-  });
+    return new Promise((resolve, reject) => {
+        if (getSize() !== 0) resolve("Ok!");
+        else reject(message);
+    });
 }
 
 function changeThemeComboBox() {
-  let rootStyles = document.documentElement;
-  const theme = ThemeComboBox.value;
+    let rootStyles = document.documentElement;
+    const theme = ThemeComboBox.value;
 
-  switch (theme) {
-    case "Scartlett Theme":
-      rootStyles.style.setProperty("--primary-color", "#db6400");
-      rootStyles.style.setProperty("--secundary-color", "#f8f1f1");
-      rootStyles.style.setProperty("--colorOne", "rgb(166, 211, 226)");
-      rootStyles.style.setProperty("--colorTwo", "#272727");
-      rootStyles.style.setProperty("--colorThree", "#ffa62b");
+    switch (theme) {
+        case "Scartlett Theme":
+            rootStyles.style.setProperty("--primary-color", "#db6400");
+            rootStyles.style.setProperty("--secundary-color", "#f8f1f1");
+            rootStyles.style.setProperty("--colorOne", "rgb(166, 211, 226)");
+            rootStyles.style.setProperty("--colorTwo", "#272727");
+            rootStyles.style.setProperty("--colorThree", "#ffa62b");
 
-      break;
+            break;
 
-    case "Dark Theme":
-      rootStyles.style.setProperty("--primary-color", "#222831");
-      rootStyles.style.setProperty("--secundary-color", "#eeeeee");
-      rootStyles.style.setProperty("--colorOne", "rgb(166, 211, 226)");
-      rootStyles.style.setProperty("--colorTwo", "#ffd369");
-      rootStyles.style.setProperty("--colorThree", "#393e46");
+        case "Dark Theme":
+            rootStyles.style.setProperty("--primary-color", "#222831");
+            rootStyles.style.setProperty("--secundary-color", "#eeeeee");
+            rootStyles.style.setProperty("--colorOne", "rgb(166, 211, 226)");
+            rootStyles.style.setProperty("--colorTwo", "#ffd369");
+            rootStyles.style.setProperty("--colorThree", "#393e46");
 
-      break;
-  }
+            break;
+    }
 }
 
 function startCloseSettingsAnimation() {
-  return new Promise((resolve) => {
-    settingsBar.style.animation = "closeSettingsAnimation .5s ease alternate";
+    return new Promise((resolve) => {
+        settingsBar.style.animation = "closeSettingsAnimation .5s ease alternate";
 
-    setTimeout(() => {
-      resolve("Ok!");
-      settingsBar.style.display = "none";
-    }, 500);
-  });
+        setTimeout(() => {
+            resolve("Ok!");
+            settingsBar.style.display = "none";
+        }, 500);
+    });
 }
 
 function changeNodeValueAnimation(value) {
-  value.style.animation = "startChangeNodeValue .7s ease alternate";
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      value.style.animation = null;
-      resolve("Setted!");
-    }, 700);
-  });
+    value.style.animation = "startChangeNodeValue .7s ease alternate";
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            value.style.animation = null;
+            resolve("Setted!");
+        }, 700);
+    });
 }
 
 /**
@@ -413,19 +427,19 @@ function changeNodeValueAnimation(value) {
  */
 
 async function changeConfiguration() {
-  try {
-    addAnimationSpeed = await isOnlyPositiveNumbers(addInputSpeed.value);
-    removeAnimationSpeed = await isOnlyPositiveNumbers(removeInputSpeed.value);
-    iterationAnimationSpeed = await isOnlyPositiveNumbers(iterationInputSpeed.value);
-    showMessageInConfiguration("Saved!");
-  } catch (error) {
-    showMessageInConfiguration(error);
-  }
+    try {
+        addAnimationSpeed = await isOnlyPositiveNumbers(addInputSpeed.value);
+        removeAnimationSpeed = await isOnlyPositiveNumbers(removeInputSpeed.value);
+        iterationAnimationSpeed = await isOnlyPositiveNumbers(iterationInputSpeed.value);
+        showMessageInConfiguration("Saved!");
+    } catch (error) {
+        showMessageInConfiguration(error);
+    }
 }
 
 function showMessageInConfiguration(message) {
-  cleanSettingMessage();
-  settingsMessageContainer.innerHTML = `<p class="settings-message">
+    cleanSettingMessage();
+    settingsMessageContainer.innerHTML = `<p class="settings-message">
     <i class="fas fa-exclamation-circle"></i>
         ${message}
     </p>`;
@@ -445,3 +459,31 @@ function showMessageInConfiguration(message) {
 // }
 
 // run();
+
+
+function disableAllButtons(){
+  setButton.setAttribute("disabled", "");
+  setButton.classList.add("disable-btn");
+  
+  iterationButton.setAttribute("disabled", "");
+  iterationButton.classList.add("disable-btn");
+  
+  deleteAllButton.setAttribute("disabled", "");
+  deleteAllButton.classList.add("disable-btn");
+  
+}
+
+function enableAllButtons(){
+  setButton.removeAttribute("disabled", "");
+  setButton.classList.remove("disable-btn");
+  
+  iterationButton.removeAttribute("disabled", "");
+  iterationButton.classList.remove("disable-btn");
+  
+  deleteAllButton.removeAttribute("disabled", "");
+  deleteAllButton.classList.remove("disable-btn");
+  
+  
+  
+}
+
