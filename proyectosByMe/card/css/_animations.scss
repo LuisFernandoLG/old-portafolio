@@ -1,0 +1,19 @@
+@keyframes moveSwitchOn{
+    0%{
+     
+    }
+
+    100%{
+        transform: translateX(130%);
+    }
+}
+
+@keyframes moveSwitchOff{
+    0%{
+        transform: translateX(70%);
+    }
+
+    100%{
+        transform: translateX(0%);
+    }
+}

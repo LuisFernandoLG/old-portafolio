@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="css/normalize.css" />
+        <link rel="stylesheet" href="css/style.css" />
+
+        <!-- Fonts -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div class="container">
+
+            <img src="img/bg-pattern.svg" alt="box" class="container__background">
+
+            <header class="header">
+                <img src="img/pattern-circles.svg" alt="Circles" class="header__circles">
+                <h1 class="header__tittle weight-800">Simple, traffic-based pricing</h1>
+                <h2 class="header__subtittle">
+                    Sign-up for our 30-day trial. <span class=""> Not credit card required. </span>
+                </h2>
+            </header>
+
+            <div class="card">
+                <div class="tittles">
+                    <h2 class="tittles__tittle">100K PAGEVIEWS</h2>
+
+                    <div class="price">
+                        <h3 class="price__number">
+                            $ <span class="price__data-number weight-800">16.00</span>
+                        </h3>
+                        <p class="price__month">
+                            / <span class="price__data-month">month</span>
+                        </p>
+                    </div>
+                    
+                    <div class="control-container">
+                        <div class="loaded">
+                            
+                        </div>
+                        <input class="control-container__input" type="range" />
+                    </div>
+                </div>
+                    
+                <div class="options">
+                    <div class="option">
+                        <p>Monthly Billing</p>
+                    </div>
+                    <div class="option switch-container">
+                        
+                        <input
+                        class="switch-container__switch"
+                        type="checkbox"
+                        name="switch"
+                        id="switch"
+                        />
+                        <label  for="switch" class="circle"></label>
+
+                        
+                   
+                    </div>
+                    <div class="option">
+                        <p>Yearly Billing</p>
+                    </div>
+                    <div class="option discount weight-800">
+                        <p>25% <span>discount</span> </p>
+                    </div>
+                </div>
+
+                <div class="footer-card">
+                    <div class="features">
+                        <div class="feature">
+                            <img
+                                src="../img/icon-check.svg"
+                                alt="check"
+                                class="feature__icon"
+                            />
+                            <h3 class="feature__name">Unlimited websites</h3>
+                        </div>
+                        <div class="feature">
+                            <img
+                                src="../img/icon-check.svg"
+                                alt="check"
+                                class="feature__icon"
+                            />
+                            <h3 class="feature__name">100% data ownership</h3>
+                        </div>
+                        <div class="feature">
+                            <img
+                                src="../img/icon-check.svg"
+                                alt="check"
+                                class="feature__icon"
+                            />
+                            <h3 class="feature__name">Email reports</h3>
+                        </div>
+                    </div>
+
+                    <div class="btn-container">
+                        <a href="" class="btn-container__btn">Start my trial</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/main.js"></script>
+
+    </body>
+</html>

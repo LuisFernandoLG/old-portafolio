@@ -1,0 +1,22 @@
+// Reset Input 
+input[type=range]{
+    appearance: none;
+}
+
+input[type=range]:focus{
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-thumb{
+    appearance: none;
+}
+
+
+
+// Reset CheckBox
+input[type=checkbox]{
+    appearance: none;
+}
+input[type=checkbox]:focus{
+    outline: none;
+}

@@ -1,0 +1,345 @@
+@import "variables";
+@import "resetInputs";
+@import "animations";
+
+
+body{
+    font-family: 'Manrope', sans-serif;
+    
+    background: $Light-Grayish-Blue-Empty-Slider-Bar;
+}
+
+
+
+.container{
+    width: 100%;
+    height: 100vh;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+
+.container__background{
+    top: 0;
+    position: absolute;
+    width: 100%;
+    height: 50%;
+}
+
+// Header -------------------------------------------------------------------------------------------------
+.header{
+    margin-bottom: 60px;
+    text-align: center;
+    position: relative;
+
+    .header__circles{
+        position: absolute;
+
+        top: -40%;
+        right: 40%;
+
+    }
+    
+    
+    .header__tittle{
+        position: relative;
+        font-size: 2.1875rem;
+        margin-bottom: 10px;
+        
+    }
+    
+    .header__subtittle{
+        position: relative;
+     
+        font-size: 15px;
+        color: $Grayish-Blue-Text;
+    }
+}
+
+
+// Card -----------------------------------------------------------------------------------
+
+.card{
+    position: relative;
+    max-width: 670px;
+    width: 50vw;
+    padding: 20px;
+    background: $Very-Pale-Blue-Main-Background;
+    box-shadow: 0.3125rem 0.3125rem 0.925rem $Grayish-Blue-Text;
+    
+}
+
+.tittles{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .tittles__tittle{
+        font-size: 1.2rem;
+        color: $Grayish-Blue-Text;
+        text-align: center;
+
+        flex-basis: 50%;
+    }
+
+    .price{
+        flex-basis: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .price__number{
+            font-size: 2.1875rem;
+        }
+
+        .price__month{
+            font-size: 15px;
+            color: $Grayish-Blue-Text;
+        }
+    }
+}
+
+.control-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+
+    margin: 40px auto;
+
+    .loaded{
+        position: absolute;
+        left: 0;
+
+        width: 50%;
+        height: 15px;
+
+        border-radius: 10px;
+
+        background: $Soft-Cyan-Full-Slider-Bar;
+
+    }
+
+    .control-container__input{
+        
+        width: 100%;
+        height: 15px;
+        cursor: pointer;
+        
+        background: $Light-Grayish-Blue-Empty-Slider-Bar;
+        border-radius: 10px;
+
+        
+    }
+    
+    .control-container__input::-webkit-slider-thumb{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+
+        box-shadow: 3px 3px 15px 0 $Strong-Cyan-Slider-Backround;
+
+        background: url("../img/icon-slider.svg") $Strong-Cyan-Slider-Backround no-repeat center;
+        
+        position: relative;
+
+    }
+
+    .control-container__input::-webkit-slider-thumb:active{
+        background: url("../img/icon-slider.svg") $Strong-Cyan-Slider-Backround-Active no-repeat center;
+        box-shadow: 3px 3px 20px 0 $Strong-Cyan-Slider-Backround;
+
+    }
+
+}
+
+// Options --------------------------------------------------------------------------
+
+.options{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .option{
+        font-size: 1rem;
+        margin: 0 5px;
+        color: $Grayish-Blue-Text;
+    }
+}
+
+// Switch-----------------------------------------------
+.switch-container{
+
+    position: relative;
+    padding: 2px;
+    
+    
+    .circle{
+        cursor: pointer;
+
+        position: absolute;
+        left: 10%;
+        top: 15%;
+        content: " ";
+        width: 35%;
+        height: 60%;
+        border-radius: 120px;
+        
+        box-shadow: 0 0 5px 0px $Light-Grayish-Blue-Toggle-Background;
+        
+        background: $Very-Pale-Blue-Main-Background;
+        
+        animation: moveSwitchOff .2s forwards ease;
+    }
+    
+    .switch-container__switch{
+        cursor: pointer;
+        
+        width: 35px;
+        height: 20px;
+        background: $Light-Grayish-Blue-Toggle-Background;
+        border-radius: 10px;
+        
+        
+    }
+
+    .switch-container__switch:checked{
+        outline: none;
+        background: $Soft-Cyan-Full-Slider-Bar;
+        
+        + .circle{
+            animation: moveSwitchOn .2s forwards ease;
+            // left: 50%;
+
+        }
+        
+
+    }
+}
+
+
+
+.option:last-child{
+    background: $Light-Grayish-Red-Discount-Background;
+    color: $Light-Red-Discount-Text;
+
+    padding: 5px;
+
+    border-radius: 10px;
+}
+
+
+
+.footer-card{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 50px;
+
+    border-top: 1px solid $Light-Grayish-Blue-Toggle-Background;
+
+}
+
+.features{
+
+    .feature{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        margin: 15px 0;
+
+        .feature__icon{
+            margin-right: 10px;
+        }
+
+        .feature__name{
+            font-size: 1rem;
+            color: $Grayish-Blue-Text;
+        }
+    }
+
+}
+
+.btn-container{
+    background: $Dark-Desaturated-Blue-Text--CTA-Background;
+    padding: 15px 40px;
+    border-radius: 20px;
+
+    .btn-container__btn{
+        font-size: 1rem;
+        color: $Light-Grayish-Blue-Toggle-Background;
+        text-decoration: none;
+    }
+}
+
+
+/*
+
+Responsive Design
+
+*/
+
+@media screen and (max-width:920px){
+    html{
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width:840px){
+
+    .container{
+        margin: 60px 0;
+    }
+
+    html{
+        font-size: 14px;
+    }
+
+    .card{
+        width: 90%;
+    }
+
+    .price{
+        order: 3;
+        margin-bottom: 0.9375rem;
+    }
+
+    .discount p span{
+        display: none;
+    }
+
+    .header__subtittle {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .tittles{
+        flex-direction: column;
+    }
+
+    .footer-card{
+        flex-direction: column;
+
+        .feature{
+            justify-content: center;
+        }
+
+    }
+
+    .btn-container{
+        margin-top: 20px;
+    }
+
+
+}
+
+@media screen and (max-width:450px){
+    html{
+        font-size: 12px;
+    }
+}
