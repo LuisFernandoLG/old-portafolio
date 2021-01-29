@@ -15,7 +15,7 @@ toggleThemeBtn.addEventListener("click", function () {
 
         if (window.screen.width <= 800) {
             background.style.background =
-                ' var(--background-color) url("todo-app-main/images/bg-mobile-light.jpg") no-repeat';
+                ' var(--background-color) url("images/bg-mobile-light.jpg") no-repeat';
             background.style.backgroundPosition = "top";
             background.style.backgroundSize = "contain";
         }
