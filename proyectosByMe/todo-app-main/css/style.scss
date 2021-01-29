@@ -106,7 +106,7 @@ body {
             flex-grow: 1;
             max-width: 90%;
             font-weight: 400;
-            font-size: 16px;
+            font-size: 1rem;
             overflow: hidden;
             color: var(--letter-color);
 
@@ -124,10 +124,10 @@ body {
 }
 
 .circle {
-    width: 25px;
-    height: 25px;
+    width: 1.5625rem;
+    height: 1.5625rem;
 
-    margin-right: 15px;
+    margin-right: 0.9375rem;
 
     border: 1px solid var(--letter-color-light);
     border-radius: 40px;
@@ -167,6 +167,7 @@ body {
         flex-basis: 50%;
         background: var(--card-color);
         border-bottom-left-radius: $borderRadius;
+        font-size: 1rem;
 
         padding: $itemsPadding;
 
@@ -180,6 +181,7 @@ body {
         background: var(--card-color);
         border-bottom-right-radius: $borderRadius;
         padding: $itemsPadding;
+        font-size: 1rem;
 
         color: var(--letter-color-light);
 
@@ -202,6 +204,7 @@ body {
         .view-options__option {
             margin: 0 5px;
             color: var(--letter-color-light);
+            font-size: 1rem;
 
             padding: 10px;
         }
@@ -229,6 +232,9 @@ body {
 
 @media screen and (min-width: 800px) {
     
+    html{
+        font-size: 13px;
+    }
     
     
     .todo-information {
