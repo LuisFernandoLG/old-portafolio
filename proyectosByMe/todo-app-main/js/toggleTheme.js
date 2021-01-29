@@ -5,17 +5,18 @@ toggleThemeBtn.addEventListener("click", function () {
     let rootStyles = document.documentElement;
 
     if (this.className.includes("moon")) {
+        this.src = "../images/icon-sun.svg"
         rootStyles.style.setProperty("--background-color", "hsl(233, 31%, 6%)");
         rootStyles.style.setProperty("--card-color", "hsl(235, 24%, 19%)");
         rootStyles.style.setProperty("--letter-color", "hsl(234, 39%, 85%)");
         rootStyles.style.setProperty("--letter-color-light", "hsl(234, 11%, 52%)");
         background.style.background =
-            ' var(--background-color) url("/images/bg-desktop-light.jpg") no-repeat';
+            ' var(--background-color) url("../images/bg-desktop-light.jpg") no-repeat';
         background.style.backgroundPosition = "top";
 
         if (window.screen.width <= 800) {
             background.style.background =
-                ' var(--background-color) url("images/bg-mobile-light.jpg") no-repeat';
+                ' var(--background-color) url("../images/bg-mobile-light.jpg") no-repeat';
             background.style.backgroundPosition = "top";
             background.style.backgroundSize = "contain";
         }
@@ -23,9 +24,10 @@ toggleThemeBtn.addEventListener("click", function () {
         this.classList.remove("moon");
     } else {
         this.classList.add("moon");
+        this.src = "../images/icon-moon.svg"
 
         background.style.background =
-            ' var(--background-color) url("/images/bg-desktop-dark.jpg") no-repeat';
+            ' var(--background-color) url("../images/bg-desktop-dark.jpg") no-repeat';
         background.style.backgroundPosition = "top";
         rootStyles.style.setProperty("--background-color", "hsl(236, 33%, 92%)");
         rootStyles.style.setProperty("--card-color", "hsl(0, 0%, 98%)");
@@ -35,7 +37,7 @@ toggleThemeBtn.addEventListener("click", function () {
         
         if (window.screen.width <= 800) {
             background.style.background =
-                ' var(--background-color) url("/images/bg-mobile-dark.jpg") no-repeat';
+                ' var(--background-color) url("../images/bg-mobile-dark.jpg") no-repeat';
             background.style.backgroundPosition = "top";
             
             background.style.backgroundSize = "contain";

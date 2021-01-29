@@ -232,9 +232,7 @@ body {
 
 @media screen and (min-width: 800px) {
     
-    html{
-        font-size: 13px;
-    }
+   
     
     
     .todo-information {
@@ -272,9 +270,22 @@ body {
 }
 
 @media screen and (max-width: 800px) {
+    
+    html{
+        font-size: 13px;
+    }
+    
     body{
         background: var(--background-color) url("../images/bg-mobile-dark.jpg") no-repeat;
         background-position: top;
         background-size: contain;
     }
+}
+
+@media screen and (max-width: 340px) {
+    
+    html{
+        font-size: 10px;
+    }
+    
 }
