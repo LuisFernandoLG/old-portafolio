@@ -157,7 +157,7 @@ body {
 
 .status-checked {
   background: var(--Check-Background);
-  padding: 5px;
+  padding: 0.3125rem;
 }
 
 .text-checked {
