@@ -10,7 +10,7 @@ toggleThemeBtn.addEventListener("click", function () {
         rootStyles.style.setProperty("--letter-color", "hsl(234, 39%, 85%)");
         rootStyles.style.setProperty("--letter-color-light", "hsl(234, 11%, 52%)");
         background.style.background =
-            ' var(--background-color) url("todo-app-main/images/bg-desktop-light.jpg") no-repeat';
+            ' var(--background-color) url("/images/bg-desktop-light.jpg") no-repeat';
         background.style.backgroundPosition = "top";
 
         if (window.screen.width <= 800) {
@@ -25,7 +25,7 @@ toggleThemeBtn.addEventListener("click", function () {
         this.classList.add("moon");
 
         background.style.background =
-            ' var(--background-color) url("todo-app-main/images/bg-desktop-dark.jpg") no-repeat';
+            ' var(--background-color) url("/images/bg-desktop-dark.jpg") no-repeat';
         background.style.backgroundPosition = "top";
         rootStyles.style.setProperty("--background-color", "hsl(236, 33%, 92%)");
         rootStyles.style.setProperty("--card-color", "hsl(0, 0%, 98%)");
@@ -35,7 +35,7 @@ toggleThemeBtn.addEventListener("click", function () {
         
         if (window.screen.width <= 800) {
             background.style.background =
-                ' var(--background-color) url("todo-app-main/images/bg-mobile-dark.jpg") no-repeat';
+                ' var(--background-color) url("/images/bg-mobile-dark.jpg") no-repeat';
             background.style.backgroundPosition = "top";
             
             background.style.backgroundSize = "contain";
