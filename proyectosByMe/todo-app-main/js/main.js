@@ -26,7 +26,7 @@ class Item {
         item.innerHTML = `
                     ${this.status}
                     <p class="item__content ${textChecked} "> ${this.content} </p>
-                    <img src="images/icon-cross.svg" alt="" class="item__delete-btn">`;
+                    <img src="../images/icon-cross.svg" alt="" class="item__delete-btn">`;
         fragment.appendChild(item);
         return fragment;
     }
@@ -45,7 +45,7 @@ class Todo {
 
     markAsCompleted(item) {
         item.parentNode.children[0].classList.toggle("status-checked");
-        item.parentNode.children[0].innerHTML = `<img src="images/icon-check.svg" alt="check">`;
+        item.parentNode.children[0].innerHTML = `<img src="../images/icon-check.svg" alt="check">`;
         item.parentElement.children[1].classList.toggle("text-checked");
 
     }
