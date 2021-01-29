@@ -114,7 +114,7 @@ body {
           flex-grow: 1;
   max-width: 90%;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1rem;
   overflow: hidden;
   color: var(--letter-color);
   margin-right: 5px;
@@ -129,9 +129,9 @@ body {
 }
 
 .circle {
-  width: 25px;
-  height: 25px;
-  margin-right: 15px;
+  width: 1.5625rem;
+  height: 1.5625rem;
+  margin-right: 0.9375rem;
   border: 1px solid var(--letter-color-light);
   border-radius: 40px;
   display: -webkit-box;
@@ -185,6 +185,7 @@ body {
       flex-basis: 50%;
   background: var(--card-color);
   border-bottom-left-radius: 10px;
+  font-size: 1rem;
   padding: 25px;
   color: var(--letter-color-light);
   -webkit-box-ordinal-group: 11;
@@ -198,6 +199,7 @@ body {
   background: var(--card-color);
   border-bottom-right-radius: 10px;
   padding: 25px;
+  font-size: 1rem;
   color: var(--letter-color-light);
   text-align: right;
   -webkit-box-ordinal-group: 21;
@@ -222,6 +224,7 @@ body {
 .todo-information .view-options .view-options__option {
   margin: 0 5px;
   color: var(--letter-color-light);
+  font-size: 1rem;
   padding: 10px;
 }
 
@@ -247,6 +250,9 @@ body {
 }
 
 @media screen and (min-width: 800px) {
+  html {
+    font-size: 13px;
+  }
   .todo-information {
     -ms-flex-wrap: nowrap;
         flex-wrap: nowrap;
