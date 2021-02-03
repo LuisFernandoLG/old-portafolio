@@ -1,0 +1,106 @@
+body {
+  font-family: 'Yusei Magic', sans-serif;
+  background: #ffe8e8;
+}
+
+.container {
+  max-width: 800px;
+  max-height: 70vh;
+  padding: 10px;
+  margin: 40px auto;
+  background: #ffdcdc;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  -ms-grid-rows: 1fr 2fr 1fr;
+      grid-template-rows: 1fr 2fr 1fr;
+}
+
+.header {
+  grid-column: 1 / -1;
+  -ms-grid-rows: 1 / 2;
+      grid-template-rows: 1 / 2;
+}
+
+.header .header__title {
+  text-align: center;
+  font-size: 30px;
+  color: #ff9292;
+}
+
+.imgContainer {
+  grid-column: 1 / -1;
+  -ms-grid-rows: 2 / 3;
+      grid-template-rows: 2 / 3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px;
+}
+
+.imgContainer img {
+  max-width: 100%;
+  max-height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-box-shadow: 0 0 30px #ffb4b4;
+          box-shadow: 0 0 30px #ffb4b4;
+}
+
+.options {
+  grid-column: 1 / -1;
+  -ms-grid-rows: 3 / -1;
+      grid-template-rows: 3 / -1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.options .searchBtn {
+  padding: 10px 20px;
+  color: #ff9292;
+  border: none;
+  background: #ffdcdc;
+  cursor: pointer;
+  -webkit-box-shadow: 10px 0 20px #ffb4b4;
+          box-shadow: 10px 0 20px #ffb4b4;
+}
+
+.options .searchBtn:active {
+  -webkit-animation: click 1s ease forwards alternate;
+          animation: click 1s ease forwards alternate;
+}
+
+@-webkit-keyframes click {
+  0% {
+  }
+  50% {
+    background: #ffb4b4;
+  }
+  100% {
+  }
+}
+
+@keyframes click {
+  0% {
+  }
+  50% {
+    background: #ffb4b4;
+  }
+  100% {
+  }
+}
+/*# sourceMappingURL=style.css.map */

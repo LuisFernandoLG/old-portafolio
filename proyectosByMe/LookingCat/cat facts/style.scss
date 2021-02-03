@@ -1,0 +1,97 @@
+$colorOne: #ff9292;
+$colorTwo: #ffb4b4;
+$colorThree: #ffdcdc;
+$colorFour: #ffe8e8;
+ 
+
+body{
+    font-family: 'Yusei Magic', sans-serif;
+    background: $colorFour;
+}
+
+.container{
+    max-width: 800px;
+    max-height: 70vh;
+
+    padding: 10px;
+
+    margin: 40px auto;
+
+    background: $colorThree;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 2fr 1fr;
+}
+
+.header{
+    grid-column: 1 / -1;
+    grid-template-rows: 1 / 2;
+
+    .header__title{
+        text-align: center;
+        font-size: 30px;
+
+        color: $colorOne;
+    }
+}
+
+.imgContainer{
+    grid-column: 1 / -1;
+    grid-template-rows: 2 / 3;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 10px;
+    
+    img{
+        max-width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+
+        box-shadow: 0 0 30px $colorTwo;
+    }
+
+}
+
+.options{
+    grid-column: 1 / -1;
+    grid-template-rows: 3 / -1;
+
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .searchBtn{
+        padding: 10px 20px;
+        color: $colorOne;
+        border: none;
+        background: $colorThree;
+
+        cursor: pointer;
+
+        box-shadow: 10px 0 20px $colorTwo;
+
+    }
+    
+    .searchBtn:active{
+        animation: click 1s ease forwards alternate;
+    }
+}
+
+@keyframes click{
+    0%{
+
+    }
+
+    50%{
+        background: $colorTwo;
+
+    }
+
+    100%{
+    }
+}
